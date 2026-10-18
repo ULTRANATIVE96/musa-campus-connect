@@ -37,12 +37,12 @@
     <div class="app-container" id="appContainer">
 
       <!-- ==================================================================
-           SCREEN 0: LOGIN PAGE (FULL SCREEN DUAL-PANEL MASTER DESKTOP & MOBILE)
+           SCREEN 0: LOGIN & REGISTRATION (FULL SCREEN DUAL-PANEL MASTER)
            ================================================================== -->
       <section class="app-screen login-screen-page" id="screenLogin" style="display:none;">
         <div class="login-fullscreen-container">
 
-          <!-- LEFT HERO PANEL (DESKTOP SHOWCASE) -->
+          <!-- LEFT HERO PANEL (DESKTOP SHOWCASE & ZERO-DATA MISSION) -->
           <div class="login-hero-panel">
             <div class="login-hero-top">
               <div class="hero-brand-pill">
@@ -51,27 +51,27 @@
                 <span class="hero-msc-badge">MSC</span>
               </div>
               <h1 class="hero-main-title">Connect & Collaborate.<br><span class="gradient-text">Zero-Data Required.</span></h1>
-              <p class="hero-main-desc">South Africa's premier reverse-billed campus communication ecosystem. Faculty of ICT, eMalahleni Campus.</p>
+              <p class="hero-main-desc">South Africa's premier reverse-billed higher-education messaging network. Real-time academic communications without mobile data costs.</p>
               <div class="hero-features-list">
                 <div class="hero-feature-item">
                   <div class="hero-feat-icon">📡</div>
                   <div>
-                    <div class="hero-feat-title">Zero-Rated APN Network</div>
-                    <div class="hero-feat-desc">Chat freely on Vodacom, MTN, and Telkom without consuming student mobile data bundles.</div>
+                    <div class="hero-feat-title">Zero-Rated APN Connectivity</div>
+                    <div class="hero-feat-desc">Free communication across MTN, Vodacom & Telkom with zero student airtime deduction.</div>
+                  </div>
+                </div>
+                <div class="hero-feature-item">
+                  <div class="hero-feat-icon">🎓</div>
+                  <div>
+                    <div class="hero-feat-title">Verified Student Registration</div>
+                    <div class="hero-feat-desc">Register with your student number to access verified departmental channels and study circles.</div>
                   </div>
                 </div>
                 <div class="hero-feature-item">
                   <div class="hero-feat-icon">🛡️</div>
                   <div>
-                    <div class="hero-feat-title">Role-Based Campus Security</div>
-                    <div class="hero-feat-desc">Strict separation of concerns: Students collaborate securely; Campus Admins manage faculty broadcasts.</div>
-                  </div>
-                </div>
-                <div class="hero-feature-item">
-                  <div class="hero-feat-icon">⚡</div>
-                  <div>
-                    <div class="hero-feat-title">Real-Time Emergency Broadcasts</div>
-                    <div class="hero-feat-desc">Instant dispatch of exam timetables, campus alerts, and official department notices.</div>
+                    <div class="hero-feat-title">Campus Manager Administration</div>
+                    <div class="hero-feat-desc">Dedicated management console for faculty announcements, APN allocations and emergency broadcasts.</div>
                   </div>
                 </div>
               </div>
@@ -92,82 +92,62 @@
             </div>
           </div>
 
-          <!-- RIGHT AUTH PANEL (INTERACTIVE PERSONAS & CREDENTIALS) -->
+          <!-- RIGHT AUTH PANEL (MANAGER VIP + REGISTER / LOGIN TABS) -->
           <div class="login-auth-panel">
             <div class="login-auth-content">
-              <h2 class="auth-header-title">Sign In to MSC Portal</h2>
-              <p class="auth-header-subtitle">Select a verified mock persona below for instant 1-click preview, or log in with faculty credentials.</p>
 
-              <div class="mock-personas-section">
-                <div class="section-tag-row">
-                  <span class="section-tag-title">⚡ 1-Click Fast Sign-In</span>
-                  <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">Role Preview Demo</span>
+              <!-- PERMANENT CAMPUS MANAGER ACCOUNT CARD (KEPT THERE) -->
+              <div class="manager-access-card">
+                <div class="manager-card-top">
+                  <div class="manager-badge"><span class="pulse-dot"></span> Institutional Manager</div>
+                  <span class="manager-tag">Pre-Authorized Master Account</span>
                 </div>
-                <div class="personas-grid-vertical">
-
-                  <!-- Persona 1: Student (User) - DOES NOT HAVE ADMIN PAGE -->
-                  <div class="persona-interactive-card student">
-                    <div class="card-top-identity">
-                      <div class="card-avatar-details">
-                        <div class="persona-avatar-circle student">H</div>
-                        <div>
-                          <h4 class="persona-display-name">Hlayiseko Hlungwani</h4>
-                          <p class="persona-account-email">student@msc.ac.za</p>
-                        </div>
-                      </div>
-                      <span class="persona-scope-tag student">Student (User)</span>
-                    </div>
-                    <p class="persona-permissions-text"><strong>Scope:</strong> Zero-data chat, BIS301 course groups & study circles. <em style="color:#ef4444; font-weight:700;">No Admin Console access.</em></p>
-                    <form action="/login" method="POST">
-                      <input type="hidden" name="role" value="user">
-                      <button type="submit" class="btn-fast-signin student">Sign In as Student (User) →</button>
-                    </form>
+                <div class="manager-profile-row">
+                  <div class="manager-avatar-circle">A</div>
+                  <div class="manager-meta-box">
+                    <h4 class="manager-title">Dr. P. Sithole</h4>
+                    <p class="manager-subtext">admin@msc.ac.za • Faculty Administration</p>
                   </div>
-
-                  <!-- Persona 2: Campus Administrator (Admin) - HAS FULL ADMIN PAGE -->
-                  <div class="persona-interactive-card admin">
-                    <div class="card-top-identity">
-                      <div class="card-avatar-details">
-                        <div class="persona-avatar-circle admin">A</div>
-                        <div>
-                          <h4 class="persona-display-name">Dr. P. Sithole</h4>
-                          <p class="persona-account-email">admin@msc.ac.za</p>
-                        </div>
-                      </div>
-                      <span class="persona-scope-tag admin">Administrator</span>
-                    </div>
-                    <p class="persona-permissions-text"><strong>Scope:</strong> Full Admin Console, live campus telemetry, APN allocations & broadcast management.</p>
-                    <form action="/login" method="POST">
-                      <input type="hidden" name="role" value="admin">
-                      <button type="submit" class="btn-fast-signin admin">Sign In as Administrator (Admin) →</button>
-                    </form>
-                  </div>
-
                 </div>
+                <form action="/login" method="POST">
+                  <input type="hidden" name="role" value="admin">
+                  <input type="hidden" name="email" value="admin@msc.ac.za">
+                  <button type="submit" class="btn-manager-action">
+                    <span>🛡️ Sign In as Campus Manager</span>
+                    <span class="action-arrow">→</span>
+                  </button>
+                </form>
               </div>
 
-              <!-- Divider -->
-              <div class="auth-divider-line"><span>Or Sign In with Email</span></div>
+              <!-- STUDENT ACCESS PORTAL -->
+              <div class="auth-divider-line"><span>Student Access Portal</span></div>
 
-              <!-- Manual Form -->
-              <form action="/login" method="POST" class="manual-form-grid">
-                <div class="login-field-row">
-                  <label class="login-field-label">Student No. or Staff Email</label>
-                  <input type="email" name="email" class="login-field-input" placeholder="student@msc.ac.za or admin@msc.ac.za" value="student@msc.ac.za" required>
+              <!-- Tab Switcher -->
+              <div class="auth-tabs-nav">
+                <a href="/?screen=login&tab=login" class="auth-tab-link active">🔑 Sign In</a>
+                <a href="/?screen=login&tab=register" class="auth-tab-link">✨ Register Account</a>
+              </div>
+
+              <!-- SIGN IN FORM -->
+              <div class="auth-form-card">
+                <h3 class="auth-form-title">Sign In to Your Account</h3>
+                <p class="auth-form-desc">Enter your registered student credentials. <em>If you don't have an account, you must register first.</em></p>
+                <form action="/login" method="POST" class="auth-input-grid">
+                  <div class="form-input-group">
+                    <label class="form-input-label">Student No. or Campus Email</label>
+                    <input type="email" name="email" class="form-input-field" placeholder="student@msc.ac.za" required>
+                  </div>
+                  <div class="form-input-group">
+                    <label class="form-input-label">Password</label>
+                    <input type="password" name="password" class="form-input-field" placeholder="••••••••" required>
+                  </div>
+                  <button type="submit" class="btn-auth-primary">Sign In to MSC Portal →</button>
+                </form>
+                <div class="auth-need-register-box">
+                  <span>Don't have an account yet?</span>
+                  <a href="/?screen=login&tab=register" class="btn-register-secondary">Register New Student Account →</a>
                 </div>
-                <div class="login-field-row">
-                  <label class="login-field-label">Password</label>
-                  <input type="password" name="password" class="login-field-input" placeholder="••••••••" value="student123" required>
-                </div>
-                <div class="login-field-row">
-                  <label class="login-field-label">Account Role</label>
-                  <select name="role" class="login-field-select">
-                    <option value="user">Student (User — Zero-Data Chat, No Admin Console)</option>
-                    <option value="admin">Campus Administrator (Admin — Full Console & Broadcasts)</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn-manual-signin">Sign In to MSC Portal</button>
-              </form>
+              </div>
 
               <p class="auth-security-footnote">🔒 Zero-Rated Telco APN Gateway • Faculty of ICT • Zero student airtime deducted</p>
 

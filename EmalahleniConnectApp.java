@@ -72,12 +72,48 @@ public class EmalahleniConnectApp {
         }
     }
 
+    // User Account Definition & User Registry
+    static class UserAccount {
+        String name;
+        String email;
+        String password;
+        String role; // "admin" or "user"
+        String department;
+        String initials;
+
+        public UserAccount(String name, String email, String password, String role, String department, String initials) {
+            this.name = name;
+            this.email = email;
+            this.password = password;
+            this.role = role;
+            this.department = department;
+            this.initials = initials;
+        }
+    }
+
+    static final Map<String, UserAccount> userRegistry = new HashMap<>();
+
+    private static void initUserRegistry() {
+        if (!userRegistry.isEmpty()) return;
+        // The permanent Manager / Administrator account (always kept and pre-authorized)
+        UserAccount manager = new UserAccount(
+            "Dr. P. Sithole",
+            "admin@msc.ac.za",
+            "admin123",
+            "admin",
+            "Faculty of ICT / Campus Administration",
+            "A"
+        );
+        userRegistry.put("admin@msc.ac.za", manager);
+        userRegistry.put("admin", manager);
+    }
+
     // Authentication & Role-Based Access Control State
-    static boolean isLoggedIn = true;
+    static boolean isLoggedIn = false;
     static String currentUserRole = "user"; // "user" (Student) or "admin" (Campus Administrator)
-    static String userName = "Hlayiseko Hlungwani";
-    static String userEmail = "student@msc.ac.za";
-    static String userInitials = "H";
+    static String userName = "Student";
+    static String userEmail = "";
+    static String userInitials = "S";
     static boolean isPremium = false;
     static double totalReverseBilledMB = 18.42;
 
@@ -89,6 +125,7 @@ public class EmalahleniConnectApp {
     // MAIN METHOD: Launches Embedded Java HTTP Web Server
     // ========================================================================
     public static void main(String[] args) throws IOException {
+        initUserRegistry();
         initSampleData();
 
         int port = PORT;
@@ -104,6 +141,7 @@ public class EmalahleniConnectApp {
         server.createContext("/", new MainAppHandler());
         server.createContext("/styles.css", new StaticCssHandler());
         server.createContext("/login", new LoginHandler());
+        server.createContext("/register", new RegisterHandler());
         server.createContext("/send-message", new SendMessageHandler());
         server.createContext("/new-conversation", new NewConversationHandler());
         server.createContext("/upgrade-premium", new UpgradePremiumHandler());
@@ -214,33 +252,119 @@ public class EmalahleniConnectApp {
     }
 
     // ========================================================================
-    // ACTION HANDLER: Login & Mock Personas
+    // ACTION HANDLER: Login & Role Authentication
     // ========================================================================
     static class LoginHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
                 Map<String, String> postData = parseFormData(exchange);
-                String role = postData.getOrDefault("role", "user").toLowerCase().trim();
+                String role = postData.getOrDefault("role", "").toLowerCase().trim();
                 String email = postData.getOrDefault("email", "").toLowerCase().trim();
+                String password = postData.getOrDefault("password", "").trim();
 
-                if ("admin".equals(role) || email.contains("admin")) {
-                    currentUserRole = "admin";
-                    userName = "Dr. P. Sithole (Campus Admin)";
-                    userEmail = "admin@msc.ac.za";
-                    userInitials = "A";
-                    isLoggedIn = true;
+                // 1-Click Campus Manager VIP Access (Kept pre-authorized)
+                if ("admin".equals(role) || "admin@msc.ac.za".equals(email)) {
+                    UserAccount manager = userRegistry.get("admin@msc.ac.za");
+                    if (manager != null) {
+                        currentUserRole = manager.role;
+                        userName = manager.name + " (Campus Manager)";
+                        userEmail = manager.email;
+                        userInitials = manager.initials;
+                        isLoggedIn = true;
+                        redirect(exchange, "/?screen=admin");
+                        return;
+                    }
+                }
+
+                if (email.isEmpty()) {
+                    redirect(exchange, "/?screen=login&tab=login&error=empty");
+                    return;
+                }
+
+                // Check if account exists in registry
+                UserAccount account = userRegistry.get(email);
+                if (account == null) {
+                    // ACCOUNT DOES NOT EXIST! BLOCK LOGIN AND REQUIRE REGISTRATION
+                    redirect(exchange, "/?screen=login&tab=login&error=notfound&attempted=" + urlEncode(email));
+                    return;
+                }
+
+                // Verify password
+                if (!password.isEmpty() && !password.equals(account.password)) {
+                    redirect(exchange, "/?screen=login&tab=login&error=badpass&attempted=" + urlEncode(email));
+                    return;
+                }
+
+                // Successful login
+                currentUserRole = account.role;
+                userName = account.name + (account.role.equals("admin") ? " (Campus Manager)" : " (Student)");
+                userEmail = account.email;
+                userInitials = account.initials;
+                isLoggedIn = true;
+
+                if ("admin".equalsIgnoreCase(account.role)) {
                     redirect(exchange, "/?screen=admin");
                 } else {
-                    currentUserRole = "user";
-                    userName = "Hlayiseko Hlungwani (Student)";
-                    userEmail = "student@msc.ac.za";
-                    userInitials = "H";
-                    isLoggedIn = true;
                     redirect(exchange, "/?screen=chats");
                 }
             } else {
                 redirect(exchange, "/?screen=login");
+            }
+        }
+    }
+
+    // ========================================================================
+    // ACTION HANDLER: Register Student Account
+    // ========================================================================
+    static class RegisterHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+                Map<String, String> postData = parseFormData(exchange);
+                String fullName = postData.getOrDefault("fullName", "").trim();
+                String email = postData.getOrDefault("email", "").toLowerCase().trim();
+                String department = postData.getOrDefault("department", "Faculty of ICT").trim();
+                String password = postData.getOrDefault("password", "").trim();
+                String confirmPass = postData.getOrDefault("confirmPassword", "").trim();
+
+                if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                    redirect(exchange, "/?screen=login&tab=register&error=missing&name=" + urlEncode(fullName) + "&attempted=" + urlEncode(email));
+                    return;
+                }
+
+                if (!confirmPass.isEmpty() && !password.equals(confirmPass)) {
+                    redirect(exchange, "/?screen=login&tab=register&error=mismatch&name=" + urlEncode(fullName) + "&attempted=" + urlEncode(email));
+                    return;
+                }
+
+                if (userRegistry.containsKey(email)) {
+                    redirect(exchange, "/?screen=login&tab=login&error=exists&attempted=" + urlEncode(email));
+                    return;
+                }
+
+                // Derive initials
+                String initials = "S";
+                String[] parts = fullName.split("\\s+");
+                if (parts.length >= 2 && !parts[0].isEmpty() && !parts[1].isEmpty()) {
+                    initials = ("" + parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+                } else if (!fullName.isEmpty()) {
+                    initials = ("" + fullName.charAt(0)).toUpperCase();
+                }
+
+                UserAccount newAcc = new UserAccount(fullName, email, password, "user", department, initials);
+                userRegistry.put(email, newAcc);
+
+                // Auto sign-in and redirect to chats with welcome notice
+                currentUserRole = "user";
+                userName = fullName + " (Student)";
+                userEmail = email;
+                userInitials = initials;
+                isLoggedIn = true;
+
+                redirect(exchange, "/?screen=chats&registered=true&user=" + urlEncode(fullName));
+            } else {
+                redirect(exchange, "/?screen=login&tab=register");
             }
         }
     }
@@ -468,12 +592,12 @@ public class EmalahleniConnectApp {
         sb.append("  <div class=\"app-container\" id=\"appContainer\">\n");
 
         // ====================================================================
-        // SCREEN 0: LOGIN PAGE (FULL SCREEN DUAL-PANEL MASTER DESKTOP & MOBILE)
+        // SCREEN 0: LOGIN & REGISTRATION (FULL SCREEN DUAL-PANEL MASTER)
         // ====================================================================
         sb.append("    <section class=\"app-screen " + (screen.equals("login") ? "active-screen login-screen-page" : "") + "\" id=\"screenLogin\" " + (screen.equals("login") ? "" : "style=\"display:none;\"") + ">\n");
         sb.append("      <div class=\"login-fullscreen-container\">\n");
 
-        // LEFT HERO PANEL (DESKTOP SHOWCASE)
+        // LEFT HERO PANEL (DESKTOP SHOWCASE & ZERO-DATA MISSION)
         sb.append("        <div class=\"login-hero-panel\">\n");
         sb.append("          <div class=\"login-hero-top\">\n");
         sb.append("            <div class=\"hero-brand-pill\">\n");
@@ -482,27 +606,27 @@ public class EmalahleniConnectApp {
         sb.append("              <span class=\"hero-msc-badge\">MSC</span>\n");
         sb.append("            </div>\n");
         sb.append("            <h1 class=\"hero-main-title\">Connect & Collaborate.<br><span class=\"gradient-text\">Zero-Data Required.</span></h1>\n");
-        sb.append("            <p class=\"hero-main-desc\">South Africa's premier reverse-billed campus communication ecosystem. Faculty of ICT, eMalahleni Campus.</p>\n");
+        sb.append("            <p class=\"hero-main-desc\">South Africa's premier reverse-billed higher-education messaging network. Real-time academic communications without mobile data costs.</p>\n");
         sb.append("            <div class=\"hero-features-list\">\n");
         sb.append("              <div class=\"hero-feature-item\">\n");
         sb.append("                <div class=\"hero-feat-icon\">📡</div>\n");
         sb.append("                <div>\n");
-        sb.append("                  <div class=\"hero-feat-title\">Zero-Rated APN Network</div>\n");
-        sb.append("                  <div class=\"hero-feat-desc\">Chat freely on Vodacom, MTN, and Telkom without consuming student mobile data bundles.</div>\n");
+        sb.append("                  <div class=\"hero-feat-title\">Zero-Rated APN Connectivity</div>\n");
+        sb.append("                  <div class=\"hero-feat-desc\">Free communication across MTN, Vodacom & Telkom with zero student airtime deduction.</div>\n");
+        sb.append("                </div>\n");
+        sb.append("              </div>\n");
+        sb.append("              <div class=\"hero-feature-item\">\n");
+        sb.append("                <div class=\"hero-feat-icon\">🎓</div>\n");
+        sb.append("                <div>\n");
+        sb.append("                  <div class=\"hero-feat-title\">Verified Student Registration</div>\n");
+        sb.append("                  <div class=\"hero-feat-desc\">Register with your student number to access verified departmental channels and study circles.</div>\n");
         sb.append("                </div>\n");
         sb.append("              </div>\n");
         sb.append("              <div class=\"hero-feature-item\">\n");
         sb.append("                <div class=\"hero-feat-icon\">🛡️</div>\n");
         sb.append("                <div>\n");
-        sb.append("                  <div class=\"hero-feat-title\">Role-Based Campus Security</div>\n");
-        sb.append("                  <div class=\"hero-feat-desc\">Strict separation of concerns: Students collaborate securely; Campus Admins manage faculty broadcasts.</div>\n");
-        sb.append("                </div>\n");
-        sb.append("              </div>\n");
-        sb.append("              <div class=\"hero-feature-item\">\n");
-        sb.append("                <div class=\"hero-feat-icon\">⚡</div>\n");
-        sb.append("                <div>\n");
-        sb.append("                  <div class=\"hero-feat-title\">Real-Time Emergency Broadcasts</div>\n");
-        sb.append("                  <div class=\"hero-feat-desc\">Instant dispatch of exam timetables, campus alerts, and official department notices.</div>\n");
+        sb.append("                  <div class=\"hero-feat-title\">Campus Manager Administration</div>\n");
+        sb.append("                  <div class=\"hero-feat-desc\">Dedicated management console for faculty announcements, APN allocations and emergency broadcasts.</div>\n");
         sb.append("                </div>\n");
         sb.append("              </div>\n");
         sb.append("            </div>\n");
@@ -523,96 +647,156 @@ public class EmalahleniConnectApp {
         sb.append("          </div>\n");
         sb.append("        </div>\n");
 
-        // RIGHT AUTH PANEL (INTERACTIVE PERSONAS & CREDENTIALS)
+        // RIGHT AUTH PANEL (MANAGER VIP + REGISTER / LOGIN TABS)
         sb.append("        <div class=\"login-auth-panel\">\n");
         sb.append("          <div class=\"login-auth-content\">\n");
-        String loginErr = params.getOrDefault("error", "");
-        if ("unauthorized".equalsIgnoreCase(loginErr)) {
-            sb.append("            <div class=\"unauthorized-toast-banner\">\n");
-            sb.append("              <span>⚠️</span>\n");
-            sb.append("              <span>Access Restricted: Student User accounts do not have administrator permissions.</span>\n");
+
+        String tab = params.getOrDefault("tab", "login");
+        String err = params.getOrDefault("error", "");
+        String attempted = params.getOrDefault("attempted", "");
+
+        // Alert Messages
+        if ("notfound".equalsIgnoreCase(err)) {
+            sb.append("            <div class=\"auth-alert-banner alert-notfound\">\n");
+            sb.append("              <div class=\"alert-icon-box\">❌</div>\n");
+            sb.append("              <div class=\"alert-content-box\">\n");
+            sb.append("                <div class=\"alert-headline\">Account Not Found!</div>\n");
+            sb.append("                <div class=\"alert-message\">Details for <strong>" + escapeHtml(attempted) + "</strong> do not exist in the MSC registry. <strong>You must register an account first before signing in.</strong></div>\n");
+            sb.append("                <a href=\"/?screen=login&tab=register&attempted=" + urlEncode(attempted) + "\" class=\"btn-alert-cta\">👉 Register an Account Now →</a>\n");
+            sb.append("              </div>\n");
+            sb.append("            </div>\n");
+        } else if ("badpass".equalsIgnoreCase(err)) {
+            sb.append("            <div class=\"auth-alert-banner alert-warning\">\n");
+            sb.append("              <div class=\"alert-icon-box\">⚠️</div>\n");
+            sb.append("              <div class=\"alert-content-box\">\n");
+            sb.append("                <div class=\"alert-headline\">Incorrect Password</div>\n");
+            sb.append("                <div class=\"alert-message\">The password for <strong>" + escapeHtml(attempted) + "</strong> is incorrect. Please try again.</div>\n");
+            sb.append("              </div>\n");
+            sb.append("            </div>\n");
+        } else if ("exists".equalsIgnoreCase(err)) {
+            sb.append("            <div class=\"auth-alert-banner alert-info\">\n");
+            sb.append("              <div class=\"alert-icon-box\">ℹ️</div>\n");
+            sb.append("              <div class=\"alert-content-box\">\n");
+            sb.append("                <div class=\"alert-headline\">Account Already Exists</div>\n");
+            sb.append("                <div class=\"alert-message\">An account for <strong>" + escapeHtml(attempted) + "</strong> is already registered. Please sign in below.</div>\n");
+            sb.append("              </div>\n");
+            sb.append("            </div>\n");
+        } else if ("mismatch".equalsIgnoreCase(err)) {
+            sb.append("            <div class=\"auth-alert-banner alert-warning\">\n");
+            sb.append("              <div class=\"alert-icon-box\">⚠️</div>\n");
+            sb.append("              <div class=\"alert-content-box\">\n");
+            sb.append("                <div class=\"alert-headline\">Passwords Do Not Match</div>\n");
+            sb.append("                <div class=\"alert-message\">Please ensure both password fields match exactly.</div>\n");
+            sb.append("              </div>\n");
+            sb.append("            </div>\n");
+        } else if ("unauthorized".equalsIgnoreCase(err)) {
+            sb.append("            <div class=\"auth-alert-banner alert-warning\">\n");
+            sb.append("              <div class=\"alert-icon-box\">⛔</div>\n");
+            sb.append("              <div class=\"alert-content-box\">\n");
+            sb.append("                <div class=\"alert-headline\">Access Restricted</div>\n");
+            sb.append("                <div class=\"alert-message\">Student user accounts do not have administrator rights. Log in as Campus Manager to access admin tools.</div>\n");
+            sb.append("              </div>\n");
             sb.append("            </div>\n");
         }
-        sb.append("            <h2 class=\"auth-header-title\">Sign In to MSC Portal</h2>\n");
-        sb.append("            <p class=\"auth-header-subtitle\">Select a verified mock persona below for instant 1-click preview, or log in with faculty credentials.</p>\n");
 
-        sb.append("            <div class=\"mock-personas-section\">\n");
-        sb.append("              <div class=\"section-tag-row\">\n");
-        sb.append("                <span class=\"section-tag-title\">⚡ 1-Click Fast Sign-In</span>\n");
-        sb.append("                <span style=\"font-size:0.75rem; color:var(--text-muted); font-weight:700;\">Role Preview Demo</span>\n");
+        // PERMANENT CAMPUS MANAGER ACCOUNT CARD (KEPT THERE)
+        sb.append("            <div class=\"manager-access-card\">\n");
+        sb.append("              <div class=\"manager-card-top\">\n");
+        sb.append("                <div class=\"manager-badge\"><span class=\"pulse-dot\"></span> Institutional Manager</div>\n");
+        sb.append("                <span class=\"manager-tag\">Pre-Authorized Master Account</span>\n");
         sb.append("              </div>\n");
-        sb.append("              <div class=\"personas-grid-vertical\">\n");
-
-        // Persona 1: Student (User) - DOES NOT HAVE ADMIN PAGE
-        sb.append("                <div class=\"persona-interactive-card student\">\n");
-        sb.append("                  <div class=\"card-top-identity\">\n");
-        sb.append("                    <div class=\"card-avatar-details\">\n");
-        sb.append("                      <div class=\"persona-avatar-circle student\">H</div>\n");
-        sb.append("                      <div>\n");
-        sb.append("                        <h4 class=\"persona-display-name\">Hlayiseko Hlungwani</h4>\n");
-        sb.append("                        <p class=\"persona-account-email\">student@msc.ac.za</p>\n");
-        sb.append("                      </div>\n");
-        sb.append("                    </div>\n");
-        sb.append("                    <span class=\"persona-scope-tag student\">Student (User)</span>\n");
-        sb.append("                  </div>\n");
-        sb.append("                  <p class=\"persona-permissions-text\"><strong>Scope:</strong> Zero-data chat, BIS301 course groups & study circles. <em style=\"color:#ef4444; font-weight:700;\">No Admin Console access.</em></p>\n");
-        sb.append("                  <form action=\"/login\" method=\"POST\">\n");
-        sb.append("                    <input type=\"hidden\" name=\"role\" value=\"user\">\n");
-        sb.append("                    <button type=\"submit\" class=\"btn-fast-signin student\">Sign In as Student (User) →</button>\n");
-        sb.append("                  </form>\n");
+        sb.append("              <div class=\"manager-profile-row\">\n");
+        sb.append("                <div class=\"manager-avatar-circle\">A</div>\n");
+        sb.append("                <div class=\"manager-meta-box\">\n");
+        sb.append("                  <h4 class=\"manager-title\">Dr. P. Sithole</h4>\n");
+        sb.append("                  <p class=\"manager-subtext\">admin@msc.ac.za • Faculty Administration</p>\n");
         sb.append("                </div>\n");
-
-        // Persona 2: Campus Administrator (Admin) - HAS FULL ADMIN PAGE
-        sb.append("                <div class=\"persona-interactive-card admin\">\n");
-        sb.append("                  <div class=\"card-top-identity\">\n");
-        sb.append("                    <div class=\"card-avatar-details\">\n");
-        sb.append("                      <div class=\"persona-avatar-circle admin\">A</div>\n");
-        sb.append("                      <div>\n");
-        sb.append("                        <h4 class=\"persona-display-name\">Dr. P. Sithole</h4>\n");
-        sb.append("                        <p class=\"persona-account-email\">admin@msc.ac.za</p>\n");
-        sb.append("                      </div>\n");
-        sb.append("                    </div>\n");
-        sb.append("                    <span class=\"persona-scope-tag admin\">Administrator</span>\n");
-        sb.append("                  </div>\n");
-        sb.append("                  <p class=\"persona-permissions-text\"><strong>Scope:</strong> Full Admin Console, live campus telemetry, APN allocations & broadcast management.</p>\n");
-        sb.append("                  <form action=\"/login\" method=\"POST\">\n");
-        sb.append("                    <input type=\"hidden\" name=\"role\" value=\"admin\">\n");
-        sb.append("                    <button type=\"submit\" class=\"btn-fast-signin admin\">Sign In as Administrator (Admin) →</button>\n");
-        sb.append("                  </form>\n");
-        sb.append("                </div>\n");
-
-        sb.append("              </div>\n"); // end personas-grid-vertical
-        sb.append("            </div>\n");   // end mock-personas-section
-
-        // Divider
-        sb.append("            <div class=\"auth-divider-line\"><span>Or Sign In with Email</span></div>\n");
-
-        // Manual form
-        sb.append("            <form action=\"/login\" method=\"POST\" class=\"manual-form-grid\">\n");
-        sb.append("              <div class=\"login-field-row\">\n");
-        sb.append("                <label class=\"login-field-label\">Student No. or Staff Email</label>\n");
-        sb.append("                <input type=\"email\" name=\"email\" class=\"login-field-input\" placeholder=\"student@msc.ac.za or admin@msc.ac.za\" value=\"student@msc.ac.za\" required>\n");
         sb.append("              </div>\n");
-        sb.append("              <div class=\"login-field-row\">\n");
-        sb.append("                <label class=\"login-field-label\">Password</label>\n");
-        sb.append("                <input type=\"password\" name=\"password\" class=\"login-field-input\" placeholder=\"••••••••\" value=\"student123\" required>\n");
-        sb.append("              </div>\n");
-        sb.append("              <div class=\"login-field-row\">\n");
-        sb.append("                <label class=\"login-field-label\">Account Role</label>\n");
-        sb.append("                <select name=\"role\" class=\"login-field-select\">\n");
-        sb.append("                  <option value=\"user\">Student (User — Zero-Data Chat, No Admin Console)</option>\n");
-        sb.append("                  <option value=\"admin\">Campus Administrator (Admin — Full Console & Broadcasts)</option>\n");
-        sb.append("                </select>\n");
-        sb.append("              </div>\n");
-        sb.append("              <button type=\"submit\" class=\"btn-manual-signin\">Sign In to MSC Portal</button>\n");
-        sb.append("            </form>\n");
+        sb.append("              <form action=\"/login\" method=\"POST\">\n");
+        sb.append("                <input type=\"hidden\" name=\"role\" value=\"admin\">\n");
+        sb.append("                <input type=\"hidden\" name=\"email\" value=\"admin@msc.ac.za\">\n");
+        sb.append("                <button type=\"submit\" class=\"btn-manager-action\">\n");
+        sb.append("                  <span>🛡️ Sign In as Campus Manager</span>\n");
+        sb.append("                  <span class=\"action-arrow\">→</span>\n");
+        sb.append("                </button>\n");
+        sb.append("              </form>\n");
+        sb.append("            </div>\n");
+
+        // STUDENT ACCESS PORTAL
+        sb.append("            <div class=\"auth-divider-line\"><span>Student Access Portal</span></div>\n");
+
+        // Tab Switcher
+        sb.append("            <div class=\"auth-tabs-nav\">\n");
+        sb.append("              <a href=\"/?screen=login&tab=login\" class=\"auth-tab-link " + (tab.equals("login") ? "active" : "") + "\">🔑 Sign In</a>\n");
+        sb.append("              <a href=\"/?screen=login&tab=register\" class=\"auth-tab-link " + (tab.equals("register") ? "active" : "") + "\">✨ Register Account</a>\n");
+        sb.append("            </div>\n");
+
+        if (tab.equals("register")) {
+            // REGISTER FORM
+            sb.append("            <div class=\"auth-form-card\">\n");
+            sb.append("              <h3 class=\"auth-form-title\">Register Student Account</h3>\n");
+            sb.append("              <p class=\"auth-form-desc\">Create your student profile to start zero-data messaging with classmates and lecturers.</p>\n");
+            sb.append("              <form action=\"/register\" method=\"POST\" class=\"auth-input-grid\">\n");
+            sb.append("                <div class=\"form-input-group\">\n");
+            sb.append("                  <label class=\"form-input-label\">Full Name</label>\n");
+            sb.append("                  <input type=\"text\" name=\"fullName\" class=\"form-input-field\" placeholder=\"e.g. Hlayiseko Hlungwani\" required>\n");
+            sb.append("                </div>\n");
+            sb.append("                <div class=\"form-input-group\">\n");
+            sb.append("                  <label class=\"form-input-label\">Student Number / Campus Email</label>\n");
+            sb.append("                  <input type=\"email\" name=\"email\" class=\"form-input-field\" placeholder=\"e.g. 22409812@msc.ac.za or student@msc.ac.za\" value=\"" + escapeHtml(attempted) + "\" required>\n");
+            sb.append("                </div>\n");
+            sb.append("                <div class=\"form-input-group\">\n");
+            sb.append("                  <label class=\"form-input-label\">Faculty & Department</label>\n");
+            sb.append("                  <select name=\"department\" class=\"form-input-field\">\n");
+            sb.append("                    <option value=\"Faculty of ICT — BIS301\">Faculty of ICT — BIS301</option>\n");
+            sb.append("                    <option value=\"Faculty of ICT — Software Development\">Faculty of ICT — Software Development</option>\n");
+            sb.append("                    <option value=\"Faculty of ICT — IT Support & Networks\">Faculty of ICT — IT Support & Networks</option>\n");
+            sb.append("                    <option value=\"Faculty of Engineering\">Faculty of Engineering</option>\n");
+            sb.append("                    <option value=\"Faculty of Management Sciences\">Faculty of Management Sciences</option>\n");
+            sb.append("                  </select>\n");
+            sb.append("                </div>\n");
+            sb.append("                <div class=\"form-input-row-2col\">\n");
+            sb.append("                  <div class=\"form-input-group\">\n");
+            sb.append("                    <label class=\"form-input-label\">Create Password</label>\n");
+            sb.append("                    <input type=\"password\" name=\"password\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                  </div>\n");
+            sb.append("                  <div class=\"form-input-group\">\n");
+            sb.append("                    <label class=\"form-input-label\">Confirm Password</label>\n");
+            sb.append("                    <input type=\"password\" name=\"confirmPassword\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                  </div>\n");
+            sb.append("                </div>\n");
+            sb.append("                <button type=\"submit\" class=\"btn-auth-primary\">✨ Register Student Account →</button>\n");
+            sb.append("              </form>\n");
+            sb.append("              <div class=\"auth-switch-row\">Already have an account? <a href=\"/?screen=login&tab=login\" class=\"auth-switch-link\">Sign in here</a></div>\n");
+            sb.append("            </div>\n");
+        } else {
+            // SIGN IN FORM
+            sb.append("            <div class=\"auth-form-card\">\n");
+            sb.append("              <h3 class=\"auth-form-title\">Sign In to Your Account</h3>\n");
+            sb.append("              <p class=\"auth-form-desc\">Enter your registered student credentials. <em>If you don't have an account, you must register first.</em></p>\n");
+            sb.append("              <form action=\"/login\" method=\"POST\" class=\"auth-input-grid\">\n");
+            sb.append("                <div class=\"form-input-group\">\n");
+            sb.append("                  <label class=\"form-input-label\">Student No. or Campus Email</label>\n");
+            sb.append("                  <input type=\"email\" name=\"email\" class=\"form-input-field\" placeholder=\"student@msc.ac.za\" value=\"" + escapeHtml(attempted) + "\" required>\n");
+            sb.append("                </div>\n");
+            sb.append("                <div class=\"form-input-group\">\n");
+            sb.append("                  <label class=\"form-input-label\">Password</label>\n");
+            sb.append("                  <input type=\"password\" name=\"password\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                </div>\n");
+            sb.append("                <button type=\"submit\" class=\"btn-auth-primary\">Sign In to MSC Portal →</button>\n");
+            sb.append("              </form>\n");
+            sb.append("              <div class=\"auth-need-register-box\">\n");
+            sb.append("                <span>Don't have an account yet?</span>\n");
+            sb.append("                <a href=\"/?screen=login&tab=register\" class=\"btn-register-secondary\">Register New Student Account →</a>\n");
+            sb.append("              </div>\n");
+            sb.append("            </div>\n");
+        }
 
         sb.append("            <p class=\"auth-security-footnote\">🔒 Zero-Rated Telco APN Gateway • Faculty of ICT • Zero student airtime deducted</p>\n");
-
         sb.append("          </div>\n"); // end login-auth-content
         sb.append("        </div>\n");   // end login-auth-panel
         sb.append("      </div>\n");     // end login-fullscreen-container
-        sb.append("    </section>\n"); // end screenLogin
+        sb.append("    </section>\n");   // end screenLogin // end screenLogin
 
         // ====================================================================
         // SCREEN 1: CHATS (ITS OWN DEDICATED FULL-SCREEN PAGE)
@@ -1217,5 +1401,10 @@ public class EmalahleniConnectApp {
                    .replace(">", "&gt;")
                    .replace("\"", "&quot;")
                    .replace("'", "&#39;");
+    }
+
+    private static String urlEncode(String text) {
+        if (text == null) return "";
+        return java.net.URLEncoder.encode(text, StandardCharsets.UTF_8);
     }
 }
