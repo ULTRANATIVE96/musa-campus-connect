@@ -1,0 +1,19 @@
+{
+  "name": "musa-campus-connect",
+  "version": "1.0.0",
+  "description": "Musa Campus Connect (MSC) - Zero-Data Messaging Java Web Application",
+  "scripts": {
+    "dev": "javac EmalahleniConnectApp.java && java EmalahleniConnectApp",
+    "start": "java EmalahleniConnectApp"
+  },
+  "keywords": [
+    "java",
+    "html",
+    "css",
+    "musa-campus-connect",
+    "msc",
+    "zero-data"
+  ],
+  "author": "Hlayiseko Hlungwani",
+  "license": "ISC"
+}

@@ -1,0 +1,22 @@
+# Compiled Java class files
+*.class
+
+# Node dependencies
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo

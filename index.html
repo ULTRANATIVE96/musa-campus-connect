@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Musa Campus Connect (MSC) — Zero-Data Student Messaging</title>
+  <meta name="description" content="Musa Campus Connect (MSC): Zero-data student messaging for TUT eMalahleni Campus and South African higher education. Sponsored reverse-billing via MTN, Vodacom, and Telkom.">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="app-viewport">
+
+    <!-- Top simulated desktop browser bar (Musa Campus Connect MSC) -->
+    <div class="desktop-top-banner">
+      <div class="desktop-banner-inner">
+        <div class="desktop-url-chip">
+          <span class="lock-icon">🔒</span>
+          <span class="url-text">connect.msc.ac.za (Musa Campus Connect MSC Gateway)</span>
+        </div>
+        <div class="desktop-banner-badge">
+          <span class="pulse-dot"></span>
+          <span>Zero-Data Protocol Active • Musa Campus Connect (18.42 MB Reverse-Billed)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MASTER CONTAINER (Covers 100% of Available Screen Space) -->
+    <div class="app-container" id="appContainer">
+
+      <!-- ==================================================================
+           SCREEN 0: LOGIN PAGE (FULL SCREEN DUAL-PANEL MASTER DESKTOP & MOBILE)
+           ================================================================== -->
+      <section class="app-screen login-screen-page" id="screenLogin" style="display:none;">
+        <div class="login-fullscreen-container">
+
+          <!-- LEFT HERO PANEL (DESKTOP SHOWCASE) -->
+          <div class="login-hero-panel">
+            <div class="login-hero-top">
+              <div class="hero-brand-pill">
+                <span class="hero-brand-logo-icon">💬</span>
+                <span class="hero-brand-name">Musa Campus Connect</span>
+                <span class="hero-msc-badge">MSC</span>
+              </div>
+              <h1 class="hero-main-title">Connect & Collaborate.<br><span class="gradient-text">Zero-Data Required.</span></h1>
+              <p class="hero-main-desc">South Africa's premier reverse-billed campus communication ecosystem. Faculty of ICT, eMalahleni Campus.</p>
+              <div class="hero-features-list">
+                <div class="hero-feature-item">
+                  <div class="hero-feat-icon">📡</div>
+                  <div>
+                    <div class="hero-feat-title">Zero-Rated APN Network</div>
+                    <div class="hero-feat-desc">Chat freely on Vodacom, MTN, and Telkom without consuming student mobile data bundles.</div>
+                  </div>
+                </div>
+                <div class="hero-feature-item">
+                  <div class="hero-feat-icon">🛡️</div>
+                  <div>
+                    <div class="hero-feat-title">Role-Based Campus Security</div>
+                    <div class="hero-feat-desc">Strict separation of concerns: Students collaborate securely; Campus Admins manage faculty broadcasts.</div>
+                  </div>
+                </div>
+                <div class="hero-feature-item">
+                  <div class="hero-feat-icon">⚡</div>
+                  <div>
+                    <div class="hero-feat-title">Real-Time Emergency Broadcasts</div>
+                    <div class="hero-feat-desc">Instant dispatch of exam timetables, campus alerts, and official department notices.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-bottom-stats-row">
+              <div class="hero-stat-block">
+                <span class="stat-num">2,840+</span>
+                <span class="stat-sub">Active Students</span>
+              </div>
+              <div class="hero-stat-block">
+                <span class="stat-num">428.6 GB</span>
+                <span class="stat-sub">Zero-Data Saved</span>
+              </div>
+              <div class="hero-stat-block">
+                <span class="stat-num">99.98%</span>
+                <span class="stat-sub">Telco APN Uptime</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT AUTH PANEL (INTERACTIVE PERSONAS & CREDENTIALS) -->
+          <div class="login-auth-panel">
+            <div class="login-auth-content">
+              <h2 class="auth-header-title">Sign In to MSC Portal</h2>
+              <p class="auth-header-subtitle">Select a verified mock persona below for instant 1-click preview, or log in with faculty credentials.</p>
+
+              <div class="mock-personas-section">
+                <div class="section-tag-row">
+                  <span class="section-tag-title">⚡ 1-Click Fast Sign-In</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">Role Preview Demo</span>
+                </div>
+                <div class="personas-grid-vertical">
+
+                  <!-- Persona 1: Student (User) - DOES NOT HAVE ADMIN PAGE -->
+                  <div class="persona-interactive-card student">
+                    <div class="card-top-identity">
+                      <div class="card-avatar-details">
+                        <div class="persona-avatar-circle student">H</div>
+                        <div>
+                          <h4 class="persona-display-name">Hlayiseko Hlungwani</h4>
+                          <p class="persona-account-email">student@msc.ac.za</p>
+                        </div>
+                      </div>
+                      <span class="persona-scope-tag student">Student (User)</span>
+                    </div>
+                    <p class="persona-permissions-text"><strong>Scope:</strong> Zero-data chat, BIS301 course groups & study circles. <em style="color:#ef4444; font-weight:700;">No Admin Console access.</em></p>
+                    <form action="/login" method="POST">
+                      <input type="hidden" name="role" value="user">
+                      <button type="submit" class="btn-fast-signin student">Sign In as Student (User) →</button>
+                    </form>
+                  </div>
+
+                  <!-- Persona 2: Campus Administrator (Admin) - HAS FULL ADMIN PAGE -->
+                  <div class="persona-interactive-card admin">
+                    <div class="card-top-identity">
+                      <div class="card-avatar-details">
+                        <div class="persona-avatar-circle admin">A</div>
+                        <div>
+                          <h4 class="persona-display-name">Dr. P. Sithole</h4>
+                          <p class="persona-account-email">admin@msc.ac.za</p>
+                        </div>
+                      </div>
+                      <span class="persona-scope-tag admin">Administrator</span>
+                    </div>
+                    <p class="persona-permissions-text"><strong>Scope:</strong> Full Admin Console, live campus telemetry, APN allocations & broadcast management.</p>
+                    <form action="/login" method="POST">
+                      <input type="hidden" name="role" value="admin">
+                      <button type="submit" class="btn-fast-signin admin">Sign In as Administrator (Admin) →</button>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Divider -->
+              <div class="auth-divider-line"><span>Or Sign In with Email</span></div>
+
+              <!-- Manual Form -->
+              <form action="/login" method="POST" class="manual-form-grid">
+                <div class="login-field-row">
+                  <label class="login-field-label">Student No. or Staff Email</label>
+                  <input type="email" name="email" class="login-field-input" placeholder="student@msc.ac.za or admin@msc.ac.za" value="student@msc.ac.za" required>
+                </div>
+                <div class="login-field-row">
+                  <label class="login-field-label">Password</label>
+                  <input type="password" name="password" class="login-field-input" placeholder="••••••••" value="student123" required>
+                </div>
+                <div class="login-field-row">
+                  <label class="login-field-label">Account Role</label>
+                  <select name="role" class="login-field-select">
+                    <option value="user">Student (User — Zero-Data Chat, No Admin Console)</option>
+                    <option value="admin">Campus Administrator (Admin — Full Console & Broadcasts)</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn-manual-signin">Sign In to MSC Portal</button>
+              </form>
+
+              <p class="auth-security-footnote">🔒 Zero-Rated Telco APN Gateway • Faculty of ICT • Zero student airtime deducted</p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SCREEN 1: CHATS (ITS OWN DEDICATED FULL-SCREEN PAGE)
+           ================================================================== -->
+      <section class="app-screen active-screen" id="screenChats">
+
+        <header class="app-header">
+          <div class="header-main-row">
+            <div class="brand-identity-wrap">
+              <div class="brand-logo-icon">💬</div>
+              <div class="header-brand">
+                <h1 class="brand-title">Musa Campus Connect</h1>
+                <div class="brand-tagline-row">
+                  <span class="brand-tagline">Zero-data messaging</span>
+                  <span class="msc-badge">MSC</span>
+                </div>
+              </div>
+            </div>
+            <div class="header-actions">
+              <a href="/?screen=profile" class="user-avatar-btn" title="View Profile">H</a>
+              <a href="#new-chat-modal" class="icon-btn-new-chat" title="New Conversation">💬⁺</a>
+            </div>
+          </div>
+
+          <!-- Search Bar -->
+          <form method="GET" action="/" class="search-bar-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" name="q" placeholder="Search conversations...">
+            <input type="hidden" name="screen" value="chats">
+          </form>
+
+          <!-- Filter Pills -->
+          <div class="category-pills-row">
+            <a href="/?screen=chats&filter=all" class="cat-pill active">All</a>
+            <a href="/?screen=chats&filter=direct" class="cat-pill">Direct</a>
+            <a href="/?screen=chats&filter=group" class="cat-pill">Groups</a>
+            <a href="/?screen=chats&filter=channel" class="cat-pill">Channels</a>
+          </div>
+        </header>
+
+        <div class="screen-scroll-body">
+
+          <!-- Go Premium Banner -->
+          <div class="premium-promo-card">
+            <a href="/?screen=chats" class="promo-close-btn">✕</a>
+            <div class="promo-header">
+              <span>✨</span>
+              <span class="promo-title">Go Premium</span>
+            </div>
+            <p class="promo-description">
+              Unlock audio calls, video calls & file sharing for just R20/month
+            </p>
+            <div class="promo-perks-row">
+              <span>📞 Calls</span>
+              <span>📹 Video</span>
+              <span>📄 Files</span>
+            </div>
+            <a href="/?screen=premium" class="promo-learn-more">Learn more →</a>
+          </div>
+
+          <!-- Conversations List -->
+          <div class="conversations-list">
+
+            <!-- Channel: BIS301 Updates (Verified) -->
+            <a href="/?screen=chatView&chat=1" class="conversation-row selected-desktop-chat">
+              <div class="conv-avatar-box channel-type">📢<span class="conv-online-dot"></span></div>
+              <div class="conv-meta">
+                <div class="conv-meta-top">
+                  <div class="conv-title-wrap">
+                    <span class="conv-title">BIS301 Updates</span>
+                    <span class="verified-check-badge" title="Verified MSC Official Channel">✓</span>
+                  </div>
+                  <span class="conv-timestamp">16:08</span>
+                </div>
+                <div class="conv-snippet-row">
+                  <div class="conv-snippet">Dr. P. Sithole: Yes, lecture slides are uploaded and zero-rated...</div>
+                  <span class="unread-badge">1</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Group: ICT Foundation Study Group -->
+            <a href="/?screen=chatView&chat=2" class="conversation-row">
+              <div class="conv-avatar-box group-type">👥<span class="conv-online-dot"></span></div>
+              <div class="conv-meta">
+                <div class="conv-meta-top">
+                  <div class="conv-title-wrap">
+                    <span class="conv-title">ICT Foundation Study Group</span>
+                  </div>
+                  <span class="conv-timestamp">15:45</span>
+                </div>
+                <div class="conv-snippet-row">
+                  <div class="conv-snippet">Hlayiseko: Awesome, I compiled the Java core engine...</div>
+                </div>
+              </div>
+            </a>
+
+            <!-- Direct: Thabo Mokoena -->
+            <a href="/?screen=chatView&chat=3" class="conversation-row">
+              <div class="conv-avatar-box direct-type">💬<span class="conv-online-dot"></span></div>
+              <div class="conv-meta">
+                <div class="conv-meta-top">
+                  <div class="conv-title-wrap">
+                    <span class="conv-title">Thabo Mokoena (22410452)</span>
+                  </div>
+                  <span class="conv-timestamp">Yesterday</span>
+                </div>
+                <div class="conv-snippet-row">
+                  <div class="conv-snippet">Hlayiseko: Yes, got them. Let me know if you need the formulas...</div>
+                </div>
+              </div>
+            </a>
+
+            <!-- Channel: SRC Announcements eMalahleni -->
+            <a href="/?screen=chatView&chat=4" class="conversation-row">
+              <div class="conv-avatar-box channel-type">📢<span class="conv-online-dot"></span></div>
+              <div class="conv-meta">
+                <div class="conv-meta-top">
+                  <div class="conv-title-wrap">
+                    <span class="conv-title">SRC Announcements eMalahleni</span>
+                    <span class="verified-check-badge" title="Verified MSC Official Channel">✓</span>
+                  </div>
+                  <span class="conv-timestamp">10:15</span>
+                </div>
+                <div class="conv-snippet-row">
+                  <div class="conv-snippet">SRC President: Reminder: NSFAS transport allowances disbursement...</div>
+                </div>
+              </div>
+            </a>
+
+            <!-- Group: TUT Campus Safety & Health Clinic -->
+            <a href="/?screen=chatView&chat=5" class="conversation-row">
+              <div class="conv-avatar-box group-type">👥<span class="conv-online-dot"></span></div>
+              <div class="conv-meta">
+                <div class="conv-meta-top">
+                  <div class="conv-title-wrap">
+                    <span class="conv-title">TUT Health & Security Desk</span>
+                    <span class="verified-check-badge" title="Verified MSC Channel">✓</span>
+                  </div>
+                  <span class="conv-timestamp">08:30</span>
+                </div>
+                <div class="conv-snippet-row">
+                  <div class="conv-snippet">Campus Security: eMalahleni Campus perimeter gates monitored 24/7...</div>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SCREEN 2: ACTIVE CHAT SPACE (ITS OWN DEDICATED FULL-SCREEN PAGE)
+           ================================================================== -->
+      <section class="app-screen" id="screenChatView">
+        <header class="active-chat-header">
+          <a href="/?screen=chats" class="back-link-btn-icon" title="Back to chats">←</a>
+          <div class="chat-header-avatar">📢</div>
+          <div class="chat-header-user-info">
+            <h3 class="chat-header-name">
+              BIS301 Updates
+              <span class="verified-check-badge" title="Verified MSC Official Channel">✓</span>
+            </h3>
+            <span class="chat-header-status">
+              <span class="pulse-dot"></span> Zero-data encrypted • MSC Gateway Node (eMalahleni)
+            </span>
+          </div>
+          <div class="chat-header-call-actions">
+            <a href="/?screen=premium" class="call-action-btn" title="Voice Call (Premium)">📞</a>
+            <a href="/?screen=premium" class="call-action-btn" title="Video Call (Premium)">📹</a>
+          </div>
+        </header>
+
+        <div class="chat-messages-container">
+          <div class="chat-date-divider">Today • TUT eMalahleni Campus</div>
+
+          <div class="msg-bubble incoming">
+            <div class="msg-sender-name">Dr. P. Sithole (Lecturer)</div>
+            <div class="msg-text-body">Welcome to BIS301 eMalahleni Campus. Please note Test 1 will take place in ICT
+              Lab 3 next Friday at 09:00.</div>
+            <div class="msg-time-stamp">14:20</div>
+          </div>
+
+          <div class="msg-bubble incoming">
+            <div class="msg-sender-name">System</div>
+            <div class="msg-text-body">MSC Zero-Data Gateway verified: Notices broadcasted without airtime charges.
+            </div>
+            <div class="msg-time-stamp">14:21</div>
+          </div>
+
+          <div class="msg-bubble outgoing">
+            <div class="msg-text-body">Thank you Dr. Sithole, are the revision slides uploaded for zero-rated download?
+            </div>
+            <div class="msg-time-stamp">16:05 <span class="double-tick">✓✓</span></div>
+          </div>
+
+          <div class="msg-bubble incoming">
+            <div class="msg-sender-name">Dr. P. Sithole (Lecturer)</div>
+            <div class="msg-text-body">Yes, lecture slides are uploaded and zero-rated for all students on MSC campus
+              edge nodes.</div>
+            <div class="msg-time-stamp">16:08</div>
+          </div>
+        </div>
+
+        <form action="/send-message" method="POST" class="chat-composer-bar">
+          <input type="hidden" name="chatId" value="1">
+          <a href="/?screen=premium" class="composer-icon-btn" title="Attach PDF (Premium)">📎</a>
+          <input type="text" name="messageText" placeholder="Type zero-data message..." required autocomplete="off">
+          <button type="submit" class="composer-send-btn" title="Send">➤</button>
+        </form>
+      </section>
+
+      <!-- ==================================================================
+           SCREEN 3: ADMIN PORTAL (COVERS ENTIRE SCREEN EDGE-TO-EDGE - ADMIN ONLY)
+           ================================================================== -->
+      <section class="app-screen" id="screenAdmin">
+        <header class="admin-top-header">
+          <div class="admin-header-title-box">
+            <a href="/?screen=chats" class="back-link-btn-icon" title="Back to Chats">←</a>
+            <div>
+              <h2 class="admin-portal-title">Musa Campus Connect (MSC) — Admin Console</h2>
+              <div class="admin-portal-subbar">
+                <span class="status-pill-green"><span class="pulse-dot"></span> Gateway APN Online</span>
+                <span class="admin-subtext">TUT eMalahleni Central Node • Reverse-Billing Telemetry</span>
+              </div>
+            </div>
+          </div>
+          <div class="admin-header-cta-group">
+            <a href="/financial_model_data.csv" download class="btn-export-csv">⬇ Export Telemetry CSV</a>
+            <a href="/?screen=chats" class="btn-admin-chats">💬 Student View</a>
+          </div>
+        </header>
+
+        <div class="screen-scroll-body admin-scroll-body">
+          <!-- 4 KPI Metric Cards -->
+          <div class="admin-kpi-grid">
+            <div class="kpi-metric-card">
+              <div class="kpi-icon-bubble">👥</div>
+              <div class="kpi-value-text">2,840</div>
+              <div class="kpi-label-text">Active Students (eMalahleni)</div>
+              <div class="kpi-trend-pill positive">↑ +14.2% this month</div>
+            </div>
+
+            <div class="kpi-metric-card">
+              <div class="kpi-icon-bubble">📶</div>
+              <div class="kpi-value-text">428.60 GB</div>
+              <div class="kpi-label-text">Reverse-Billed Bandwidth</div>
+              <div class="kpi-trend-pill telco">MTN / Vodacom / Telkom</div>
+            </div>
+
+            <div class="kpi-metric-card">
+              <div class="kpi-icon-bubble">💰</div>
+              <div class="kpi-value-text">R118,500</div>
+              <div class="kpi-label-text">Monthly Operating Revenue</div>
+              <div class="kpi-trend-pill positive">Break-Even Surpassed</div>
+            </div>
+
+            <div class="kpi-metric-card">
+              <div class="kpi-icon-bubble">⚡</div>
+              <div class="kpi-value-text">99.98% / 14ms</div>
+              <div class="kpi-label-text">Gateway Cluster Latency</div>
+              <div class="kpi-trend-pill positive">High Availability SLA</div>
+            </div>
+          </div>
+
+          <!-- 2-Column Section -->
+          <div class="admin-dual-grid">
+            <div class="admin-card-panel">
+              <div class="panel-header-row">
+                <h3 class="panel-title">📢 Campus Announcement Broadcast</h3>
+                <span class="panel-tag">Zero-Rated Push</span>
+              </div>
+              <p class="panel-desc">Transmit an official MSC alert directly into all student groups and channels without
+                airtime cost.</p>
+
+              <form action="/admin-broadcast" method="POST" class="admin-broadcast-form">
+                <div class="admin-form-group">
+                  <label class="admin-label">Announcement Title</label>
+                  <input type="text" name="broadcastTitle" class="admin-input"
+                    placeholder="e.g. BIS301 Test 1 Venue Update / Loadshedding Notice" required>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Broadcast Message Content</label>
+                  <textarea name="broadcastMessage" class="admin-textarea" rows="4"
+                    placeholder="Write official university notice to broadcast to all students..." required></textarea>
+                </div>
+                <button type="submit" class="btn-transmit-broadcast">🚀 Transmit Zero-Rated Broadcast</button>
+              </form>
+            </div>
+
+            <div class="admin-card-panel">
+              <div class="panel-header-row">
+                <h3 class="panel-title">📡 Telco Reverse-Billing APN Interconnect</h3>
+                <span class="panel-tag">Live APN</span>
+              </div>
+              <p class="panel-desc">Real-time data packets zero-rated and reverse-billed to MSC institutional sponsor
+                accounts.</p>
+
+              <div class="telco-apn-list">
+                <div class="telco-apn-item">
+                  <div class="telco-badge mtn">MTN</div>
+                  <div class="telco-info">
+                    <div class="telco-name-row"><span class="telco-name">MTN South Africa APN</span><span
+                        class="telco-status active">ACTIVE</span></div>
+                    <div class="telco-sub">APN: <code>msc.mtn.co.za</code> • 2,140 Connections • Rate: R0.10/MB</div>
+                  </div>
+                  <div class="telco-numbers"><span class="telco-gb">198.4 GB</span><span
+                      class="telco-cost">R19,840.00</span></div>
+                </div>
+
+                <div class="telco-apn-item">
+                  <div class="telco-badge vodacom">VOD</div>
+                  <div class="telco-info">
+                    <div class="telco-name-row"><span class="telco-name">Vodacom SA APN</span><span
+                        class="telco-status active">ACTIVE</span></div>
+                    <div class="telco-sub">APN: <code>msc.vodacom.co.za</code> • 1,620 Connections • Rate: R0.10/MB
+                    </div>
+                  </div>
+                  <div class="telco-numbers"><span class="telco-gb">154.2 GB</span><span
+                      class="telco-cost">R15,420.00</span></div>
+                </div>
+
+                <div class="telco-apn-item">
+                  <div class="telco-badge telkom">TEL</div>
+                  <div class="telco-info">
+                    <div class="telco-name-row"><span class="telco-name">Telkom Mobile APN</span><span
+                        class="telco-status active">ACTIVE</span></div>
+                    <div class="telco-sub">APN: <code>msc.telkom.co.za</code> • 940 Connections • Rate: R0.10/MB</div>
+                  </div>
+                  <div class="telco-numbers"><span class="telco-gb">76.0 GB</span><span
+                      class="telco-cost">R7,600.00</span></div>
+                </div>
+              </div>
+              <div class="telco-summary-foot">Total Telco Reverse-Billing: <strong>428.6 GB / R42,860.00</strong></div>
+            </div>
+          </div>
+
+          <!-- Section 3: Financial Sustainability & Cash Flow Matrix -->
+          <div class="admin-card-panel full-width-panel">
+            <div class="panel-header-row">
+              <h3 class="panel-title">📊 12-Month Financial Model & Cash Flow Sustainability</h3>
+              <span class="panel-tag badge-success">Break-Even Surpassed (Month 4)</span>
+            </div>
+            <p class="panel-desc">Mathematical modeling of MSC student adoption, R20/month premium upgrades, and
+              reverse-billing bandwidth sustainability.</p>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th>Total Students</th>
+                    <th>Premium Users</th>
+                    <th>Conversion %</th>
+                    <th>Gross Inflow</th>
+                    <th>Telco Bandwidth</th>
+                    <th>Cloud & Hosting</th>
+                    <th>Net Operating Surplus</th>
+                    <th>Cumulative Surplus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Month 1</td><td>1,000</td><td>50</td><td>5.0%</td><td>R1,000.00</td><td>R875.00</td><td>R1,350.00</td><td class="text-danger">-R1,225.00</td><td class="text-danger">-R1,225.00</td></tr>
+                  <tr><td>Month 2</td><td>1,500</td><td>105</td><td>7.0%</td><td>R2,100.00</td><td>R1,312.50</td><td>R1,350.00</td><td class="text-danger">-R562.50</td><td class="text-danger">-R1,787.50</td></tr>
+                  <tr><td>Month 3</td><td>2,200</td><td>176</td><td>8.0%</td><td>R3,520.00</td><td>R1,925.00</td><td>R1,450.00</td><td class="text-success">+R145.00</td><td class="text-danger">-R1,642.50</td></tr>
+                  <tr class="highlight-row"><td><strong>Month 4 (Break-Even)</strong></td><td>3,000</td><td>270</td><td>9.0%</td><td>R5,400.00</td><td>R2,625.00</td><td>R1,550.00</td><td class="text-success"><strong>+R1,225.00</strong></td><td class="text-danger">-R417.50</td></tr>
+                  <tr><td>Month 6</td><td>4,600</td><td>506</td><td>11.0%</td><td>R10,120.00</td><td>R4,025.00</td><td>R1,850.00</td><td class="text-success">+R4,245.00</td><td class="text-success">+R6,352.50</td></tr>
+                  <tr><td>Month 12</td><td>10,000</td><td>1,700</td><td>17.0%</td><td>R34,000.00</td><td>R8,750.00</td><td>R2,850.00</td><td class="text-success">+R22,400.00</td><td class="text-success"><strong>+R88,865.00</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           BOTTOM NAVIGATION BAR (PRESERVED ON BOTH DESKTOP AND MOBILE)
+           NOTE: User does NOT have admin page! (Admin is hidden for User role)
+           ================================================================== -->
+      <nav class="app-bottom-nav">
+        <a href="/?screen=chats" class="bottom-nav-item active">
+          <span class="nav-icon">💬</span>
+          <span class="nav-label">Chats</span>
+        </a>
+        <a href="/?screen=premium" class="bottom-nav-item">
+          <span class="nav-icon">👑</span>
+          <span class="nav-label">Premium</span>
+        </a>
+        <a href="/?screen=profile" class="bottom-nav-item">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">Profile</span>
+        </a>
+      </nav>
+
+      <!-- ==================================================================
+           CSS-ONLY MODAL: NEW CONVERSATION (Zero JavaScript)
+           ================================================================== -->
+      <div class="modal-backdrop" id="new-chat-modal">
+        <div class="modal-sheet">
+          <div class="modal-sheet-header">
+            <h3 class="modal-sheet-title">New Conversation</h3>
+            <a href="#" class="modal-close-icon">✕</a>
+          </div>
+
+          <form action="/new-conversation" method="POST">
+            <div class="modal-segmented-tabs">
+              <label class="modal-seg-btn"><input type="radio" name="type" value="direct" style="display:none;"> 👤 Direct</label>
+              <label class="modal-seg-btn"><input type="radio" name="type" value="group" style="display:none;"> 👥 Group</label>
+              <label class="modal-seg-btn active"><input type="radio" name="type" value="channel" checked style="display:none;"> 📢 Channel</label>
+            </div>
+
+            <div class="modal-field-block">
+              <label class="modal-field-label">Name</label>
+              <input type="text" name="name" class="modal-text-input" placeholder="e.g. BIS301 Updates / Study Group" required>
+            </div>
+
+            <div class="modal-field-block">
+              <label class="modal-field-label">Description (optional)</label>
+              <input type="text" name="description" class="modal-text-input" placeholder="What's this about?">
+            </div>
+
+            <div class="modal-field-block">
+              <div class="modal-search-box">
+                <span>🔍</span>
+                <input type="text" placeholder="Search people in MSC directory...">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-start-conversation-purple">Start Conversation</button>
+          </form>
+        </div>
+      </div>
+
+    </div><!-- End app-container -->
+
+  </div><!-- End app-viewport -->
+
+</body>
+
+</html>
