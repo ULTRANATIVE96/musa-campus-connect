@@ -588,26 +588,131 @@
       </section>
 
       <!-- ==================================================================
+           SCREEN 4: PREMIUM UPGRADE (ITS OWN DEDICATED FULL-SCREEN PAGE)
+           ================================================================== -->
+      <section class="app-screen" id="screenPremium">
+        <div class="sub-screen-header">
+          <a href="/?screen=chats" class="back-link-btn">← Back to chats</a>
+          <h3 class="sub-screen-title">MSC Premium</h3>
+          <div style="width: 80px;"></div>
+        </div>
+        <div class="screen-scroll-body premium-body-padding">
+          <div class="premium-hero-badge">👑</div>
+          <h2 class="premium-main-heading">Musa Campus Connect Premium</h2>
+          <p class="premium-main-subheading">Unlock zero-rated voice/video calls and high-bandwidth academic file sharing • Powered by MSC</p>
+
+          <div class="premium-plan-card">
+            <div class="plan-card-header">
+              <div class="plan-badge-label"><span>✨</span><span>Premium Tier</span></div>
+              <div class="plan-price-block"><span class="price-currency-val">R20</span><span class="price-period">/month</span></div>
+            </div>
+
+            <div class="premium-features-list">
+              <div class="prem-feat-row"><div class="feat-icon-bubble">📞</div><div class="feat-text-block"><h4 class="feat-title">Voice Calling</h4><p class="feat-desc">Crystal-clear zero-rated audio calls to any classmate or lecturer</p></div></div>
+              <div class="prem-feat-row"><div class="feat-icon-bubble">📹</div><div class="feat-text-block"><h4 class="feat-title">Video Calling</h4><p class="feat-desc">Face-to-face group study sessions with zero student data deductions</p></div></div>
+              <div class="prem-feat-row"><div class="feat-icon-bubble">📄</div><div class="feat-text-block"><h4 class="feat-title">Large File Sharing</h4><p class="feat-desc">Upload textbooks, PDFs, and slide presentations up to 100MB</p></div></div>
+              <div class="prem-feat-row"><div class="feat-icon-bubble">⚡</div><div class="feat-text-block"><h4 class="feat-title">Priority Carrier Routing</h4><p class="feat-desc">Sub-10ms APN latency with guaranteed quality of service</p></div></div>
+            </div>
+
+            <button type="button" class="btn-upgrade-purple" id="btnTogglePremium" onclick="togglePremium()">Upgrade to Premium (R20/mo)</button>
+            <p class="plan-terms-subtext">Cancel anytime • Subsidized via NSFAS &amp; Telco quota allocations</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SCREEN 5: PROFILE (ITS OWN DEDICATED FULL-SCREEN PAGE)
+           ================================================================== -->
+      <section class="app-screen" id="screenProfile">
+        <div class="sub-screen-header">
+          <a href="/?screen=chats" class="back-link-btn">← Back to chats</a>
+          <h3 class="sub-screen-title">Account Profile</h3>
+          <div style="width: 80px;"></div>
+        </div>
+        <div class="screen-scroll-body profile-body-padding">
+          <div class="profile-card">
+            <div class="profile-avatar-circle" id="profileAvatar">HH</div>
+            <h2 class="profile-user-name" id="profileName">Hlayiseko Hlungwani</h2>
+            <p class="profile-user-email" id="profileEmail">student@msc.ac.za</p>
+            <div class="profile-badge-pill" id="profileRoleBadge">👤 Verified Student (No Admin Access)</div>
+          </div>
+
+          <div class="profile-stats-row">
+            <div class="stat-count-box">
+              <span class="stat-box-icon">💬</span>
+              <span class="stat-box-number" id="profileStatDirect">1</span>
+              <span class="stat-box-label">Direct</span>
+            </div>
+            <div class="stat-count-box">
+              <span class="stat-box-icon">👥</span>
+              <span class="stat-box-number" id="profileStatGroup">2</span>
+              <span class="stat-box-label">Groups</span>
+            </div>
+            <div class="stat-count-box">
+              <span class="stat-box-icon">📢</span>
+              <span class="stat-box-number" id="profileStatChannel">2</span>
+              <span class="stat-box-label">Channels</span>
+            </div>
+          </div>
+
+          <!-- APN Zero-Data Quota Card -->
+          <div class="admin-card-panel" style="margin-bottom: 16px;">
+            <div class="panel-header-row">
+              <h4 class="panel-title" style="font-size:0.88rem;">📡 MSC Zero-Rated APN Allocation</h4>
+              <span class="panel-tag" style="background:#ecfdf5; color:#065f46;">Connected</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span style="font-size:0.82rem; color:var(--text-muted);">Reverse-Billed Data Used</span>
+              <span style="font-size:0.95rem; font-weight:800; color:#10b981;">2.42 GB / Unlimited</span>
+            </div>
+            <p style="font-size:0.74rem; color:var(--text-muted); margin:6px 0 0;">Zero airtime deduction verified across MTN, Vodacom and Telkom edge nodes.</p>
+          </div>
+
+          <!-- Fast Switch Role / Sign In as Campus Manager or Student -->
+          <div style="margin-bottom: 14px;">
+            <button type="button" class="profile-switch-btn" id="btnSwitchPersona" onclick="switchPersona()">
+              🛡️ Switch to Administrator Account (Dr. P. Sithole)
+            </button>
+          </div>
+
+          <!-- Premium Upsell -->
+          <a href="/?screen=premium" class="profile-upsell-card">
+            <div class="upsell-crown-bubble">👑</div>
+            <div class="upsell-text-content">
+              <h4 class="upsell-title">Upgrade to Premium</h4>
+              <p class="upsell-desc">HD calls, video &amp; 100MB file sharing — R20/mo</p>
+            </div>
+          </a>
+
+          <a href="/?screen=login" class="profile-signout-btn" onclick="signOut(event)">↪ Sign Out of Account</a>
+        </div>
+      </section>
+
+      <!-- ==================================================================
            BOTTOM NAVIGATION BAR (PRESERVED ON BOTH DESKTOP AND MOBILE)
            NOTE: User does NOT have admin page! (Admin is hidden for User role)
            ================================================================== -->
-      <nav class="app-bottom-nav">
-        <a href="/?screen=chats" class="bottom-nav-item active">
+      <nav class="app-bottom-nav" id="appBottomNav">
+        <a href="/?screen=chats" class="bottom-nav-item active" data-nav="chats">
           <span class="nav-icon">💬</span>
           <span class="nav-label">Chats</span>
         </a>
-        <a href="/?screen=premium" class="bottom-nav-item">
+        <a href="/?screen=admin" class="bottom-nav-item" id="navAdminItem" data-nav="admin" style="display:none;">
+          <span class="nav-icon">🛡️</span>
+          <span class="nav-label">Admin</span>
+        </a>
+        <a href="/?screen=premium" class="bottom-nav-item" data-nav="premium">
           <span class="nav-icon">👑</span>
           <span class="nav-label">Premium</span>
         </a>
-        <a href="/?screen=profile" class="bottom-nav-item">
+        <a href="/?screen=profile" class="bottom-nav-item" data-nav="profile">
           <span class="nav-icon">👤</span>
           <span class="nav-label">Profile</span>
         </a>
       </nav>
 
       <!-- ==================================================================
-           CSS-ONLY MODAL: NEW CONVERSATION (Zero JavaScript)
+           CSS-ONLY MODAL: NEW CONVERSATION
            ================================================================== -->
       <div class="modal-backdrop" id="new-chat-modal">
         <div class="modal-sheet">
@@ -616,7 +721,7 @@
             <a href="#" class="modal-close-icon">✕</a>
           </div>
 
-          <form action="/new-conversation" method="POST">
+          <form action="/new-conversation" method="POST" id="newChatForm">
             <div class="modal-segmented-tabs">
               <label class="modal-seg-btn"><input type="radio" name="type" value="direct" style="display:none;"> 👤 Direct</label>
               <label class="modal-seg-btn"><input type="radio" name="type" value="group" style="display:none;"> 👥 Group</label>
@@ -648,6 +753,340 @@
     </div><!-- End app-container -->
 
   </div><!-- End app-viewport -->
+
+  <!-- ==================================================================
+       CLIENT-SIDE SPA ROUTER & CONTROLLER (STANDALONE VERCEL SUPPORT)
+       Allows full zero-latency navigation on Vercel without requiring any backend API!
+       ================================================================== -->
+  <script>
+    (function () {
+      // User Registry in localStorage
+      const DEFAULT_USERS = {
+        "admin@msc.ac.za": { fullName: "Dr. P. Sithole", email: "admin@msc.ac.za", role: "admin", department: "Faculty Administration" },
+        "student@msc.ac.za": { fullName: "Hlayiseko Hlungwani", email: "student@msc.ac.za", role: "user", department: "Faculty of ICT — BIS301" }
+      };
+
+      function getUsers() {
+        try {
+          const stored = localStorage.getItem("msc_users");
+          return stored ? JSON.parse(stored) : DEFAULT_USERS;
+        } catch (e) {
+          return DEFAULT_USERS;
+        }
+      }
+
+      function saveUsers(users) {
+        try {
+          localStorage.setItem("msc_users", JSON.stringify(users));
+        } catch (e) {}
+      }
+
+      function getCurrentUser() {
+        try {
+          const stored = localStorage.getItem("msc_current_user");
+          return stored ? JSON.parse(stored) : DEFAULT_USERS["student@msc.ac.za"];
+        } catch (e) {
+          return DEFAULT_USERS["student@msc.ac.za"];
+        }
+      }
+
+      function setCurrentUser(user) {
+        try {
+          localStorage.setItem("msc_current_user", JSON.stringify(user));
+        } catch (e) {}
+        updateUserUI();
+      }
+
+      function getIsPremium() {
+        return localStorage.getItem("msc_is_premium") === "true";
+      }
+
+      function setIsPremium(val) {
+        localStorage.setItem("msc_is_premium", val ? "true" : "false");
+        updatePremiumUI();
+      }
+
+      function updateUserUI() {
+        const user = getCurrentUser();
+        const isAdmin = user.role === "admin";
+
+        // Profile UI
+        const nameEl = document.getElementById("profileName");
+        const emailEl = document.getElementById("profileEmail");
+        const avatarEl = document.getElementById("profileAvatar");
+        const roleBadgeEl = document.getElementById("profileRoleBadge");
+        const switchBtnEl = document.getElementById("btnSwitchPersona");
+        const navAdminEl = document.getElementById("navAdminItem");
+
+        if (nameEl) nameEl.textContent = user.fullName;
+        if (emailEl) emailEl.textContent = user.email;
+        if (avatarEl) {
+          const initials = user.fullName.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+          avatarEl.textContent = initials || "U";
+          avatarEl.style.background = isAdmin 
+            ? "linear-gradient(135deg, #059669 0%, #10b981 100%)" 
+            : "var(--primary-gradient)";
+        }
+        if (roleBadgeEl) {
+          if (isAdmin) {
+            roleBadgeEl.textContent = "🛡️ Campus Administrator";
+            roleBadgeEl.style.background = "#ecfdf5";
+            roleBadgeEl.style.color = "#065f46";
+            roleBadgeEl.style.border = "1px solid #a7f3d0";
+          } else {
+            const isPrem = getIsPremium();
+            roleBadgeEl.textContent = isPrem ? "👑 Premium Member" : "👤 Verified Student (No Admin Access)";
+            roleBadgeEl.style.background = isPrem ? "#fef3c7" : "#f1f5f9";
+            roleBadgeEl.style.color = isPrem ? "#92400e" : "#475569";
+            roleBadgeEl.style.border = isPrem ? "1px solid #fde68a" : "none";
+          }
+        }
+        if (switchBtnEl) {
+          switchBtnEl.textContent = isAdmin
+            ? "👤 Switch to Student Account (Hlayiseko)"
+            : "🛡️ Switch to Administrator Account (Dr. P. Sithole)";
+        }
+        if (navAdminEl) {
+          navAdminEl.style.display = isAdmin ? "flex" : "none";
+        }
+      }
+
+      function updatePremiumUI() {
+        const isPrem = getIsPremium();
+        const btn = document.getElementById("btnTogglePremium");
+        if (btn) {
+          if (isPrem) {
+            btn.textContent = "✓ Subscribed to Premium (Click to Cancel)";
+            btn.style.background = "#10b981";
+          } else {
+            btn.textContent = "Upgrade to Premium (R20/mo)";
+            btn.style.background = "var(--primary-gradient)";
+          }
+        }
+      }
+
+      // Screen Router
+      const validScreens = ["login", "chats", "chatView", "admin", "premium", "profile"];
+
+      window.navigateToScreen = function (screenName, params = {}) {
+        if (!validScreens.includes(screenName)) screenName = "chats";
+
+        const currentUser = getCurrentUser();
+        // Guard: only admin can access admin screen
+        if (screenName === "admin" && currentUser.role !== "admin") {
+          alert("⛔ Access Restricted: Student user accounts do not have administrator rights. Please switch to the Campus Manager account to view the Admin Console.");
+          screenName = "chats";
+        }
+
+        // Hide all screens
+        document.querySelectorAll(".app-screen").forEach(s => {
+          s.classList.remove("active-screen");
+          s.style.display = "none";
+        });
+
+        // Show target screen
+        const targetId = "screen" + screenName.charAt(0).toUpperCase() + screenName.slice(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.classList.add("active-screen");
+          targetEl.style.display = "flex";
+        }
+
+        // Bottom nav visibility & active tab
+        const bottomNav = document.getElementById("appBottomNav");
+        if (bottomNav) {
+          bottomNav.style.display = (screenName === "login") ? "none" : "flex";
+          document.querySelectorAll(".bottom-nav-item").forEach(item => {
+            const nav = item.getAttribute("data-nav");
+            if (nav === screenName || (nav === "chats" && screenName === "chatView")) {
+              item.classList.add("active");
+            } else {
+              item.classList.remove("active");
+            }
+          });
+        }
+
+        // Top desktop URL banner
+        const topBanner = document.querySelector(".desktop-top-banner");
+        if (topBanner) {
+          topBanner.style.display = (screenName === "login") ? "none" : "";
+        }
+
+        // Handle login screen tabs (login vs register)
+        if (screenName === "login") {
+          const tab = params.tab || "login";
+          const signinTabLink = document.querySelector(".auth-tabs-nav a[href*='tab=login']");
+          const registerTabLink = document.querySelector(".auth-tabs-nav a[href*='tab=register']");
+          if (signinTabLink && registerTabLink) {
+            signinTabLink.classList.toggle("active", tab === "login");
+            registerTabLink.classList.toggle("active", tab === "register");
+          }
+        }
+
+        // Scroll top
+        window.scrollTo(0, 0);
+      };
+
+      // Intercept all clicks on internal links
+      document.addEventListener("click", function (e) {
+        const link = e.target.closest("a");
+        if (!link) return;
+        const href = link.getAttribute("href");
+        if (!href) return;
+
+        // If link targets modal anchor
+        if (href.startsWith("#")) return;
+
+        // Check if href is internal screen navigation: e.g. /?screen=profile or ?screen=profile
+        if (href.includes("screen=")) {
+          e.preventDefault();
+          const url = new URL(href, window.location.origin);
+          const screen = url.searchParams.get("screen") || "chats";
+          const tab = url.searchParams.get("tab") || "login";
+          const chat = url.searchParams.get("chat") || "1";
+
+          history.pushState({ screen, tab, chat }, "", href);
+          window.navigateToScreen(screen, { tab, chat });
+        }
+      });
+
+      // Browser back/forward navigation
+      window.addEventListener("popstate", function (e) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const screen = urlParams.get("screen") || (e.state && e.state.screen) || "chats";
+        const tab = urlParams.get("tab") || "login";
+        window.navigateToScreen(screen, { tab });
+      });
+
+      // Global functions for profile & premium actions
+      window.switchPersona = function () {
+        const user = getCurrentUser();
+        const users = getUsers();
+        if (user.role === "admin") {
+          setCurrentUser(users["student@msc.ac.za"] || DEFAULT_USERS["student@msc.ac.za"]);
+        } else {
+          setCurrentUser(users["admin@msc.ac.za"] || DEFAULT_USERS["admin@msc.ac.za"]);
+        }
+        window.navigateToScreen("profile");
+      };
+
+      window.togglePremium = function () {
+        const curr = getIsPremium();
+        setIsPremium(!curr);
+        alert(!curr ? "🎉 Congratulations! You have upgraded to MSC Premium." : "ℹ️ Your MSC Premium membership has been cancelled.");
+      };
+
+      window.signOut = function (e) {
+        if (e) e.preventDefault();
+        history.pushState({ screen: "login" }, "", "/?screen=login");
+        window.navigateToScreen("login");
+      };
+
+      // Handle Login Form Submissions (Vercel Client-Side Validation)
+      document.addEventListener("submit", function (e) {
+        const form = e.target;
+        const action = form.getAttribute("action");
+
+        if (action === "/login") {
+          e.preventDefault();
+          const emailInput = form.querySelector("input[name='email']");
+          const roleInput = form.querySelector("input[name='role']");
+          const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
+          const isManagerBtn = roleInput && roleInput.value === "admin";
+
+          const users = getUsers();
+
+          if (isManagerBtn || email === "admin@msc.ac.za") {
+            setCurrentUser(users["admin@msc.ac.za"]);
+            history.pushState({ screen: "chats" }, "", "/?screen=chats");
+            window.navigateToScreen("chats");
+            return;
+          }
+
+          // Check if user exists in registry
+          if (users[email]) {
+            setCurrentUser(users[email]);
+            history.pushState({ screen: "chats" }, "", "/?screen=chats");
+            window.navigateToScreen("chats");
+          } else {
+            // User does NOT exist: alert user must register first
+            alert("❌ Account Not Found!\n\nDetails for \"" + email + "\" do not exist in the MSC registry.\n\nYou must register an account first before signing in.");
+            history.pushState({ screen: "login", tab: "register" }, "", "/?screen=login&tab=register");
+            window.navigateToScreen("login", { tab: "register" });
+          }
+        } else if (action === "/register") {
+          e.preventDefault();
+          const nameInput = form.querySelector("input[name='fullName']");
+          const emailInput = form.querySelector("input[name='email']");
+          const deptInput = form.querySelector("select[name='department']");
+
+          const fullName = nameInput ? nameInput.value.trim() : "Student";
+          const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
+          const department = deptInput ? deptInput.value : "Faculty of ICT — BIS301";
+
+          if (!email) {
+            alert("Please enter a valid student email or number.");
+            return;
+          }
+
+          const users = getUsers();
+          users[email] = { fullName, email, role: "user", department };
+          saveUsers(users);
+          setCurrentUser(users[email]);
+
+          alert("✨ Student Account Registered Successfully!\n\nWelcome to Musa Campus Connect, " + fullName + "!");
+          history.pushState({ screen: "chats" }, "", "/?screen=chats");
+          window.navigateToScreen("chats");
+        } else if (action === "/send-message") {
+          e.preventDefault();
+          const textInput = form.querySelector("input[name='messageText']");
+          const text = textInput ? textInput.value.trim() : "";
+          if (text) {
+            const messagesContainer = document.querySelector(".chat-messages-container");
+            if (messagesContainer) {
+              const now = new Date();
+              const timeStr = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0');
+              const bubble = document.createElement("div");
+              bubble.className = "msg-bubble outgoing";
+              bubble.innerHTML = `<div class="msg-text-body">${text}</div><div class="msg-time-stamp">${timeStr} <span class="double-tick">✓✓</span></div>`;
+              messagesContainer.appendChild(bubble);
+              messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+            if (textInput) textInput.value = "";
+          }
+        } else if (action === "/new-conversation") {
+          e.preventDefault();
+          const nameInput = form.querySelector("input[name='name']");
+          const name = nameInput ? nameInput.value.trim() : "New Group";
+          alert("✓ Conversation \"" + name + "\" created on zero-rated APN network.");
+          window.location.hash = "";
+          history.pushState({ screen: "chatView" }, "", "/?screen=chatView");
+          window.navigateToScreen("chatView");
+        }
+      });
+
+      // Initial page load detection
+      window.addEventListener("DOMContentLoaded", function () {
+        updateUserUI();
+        updatePremiumUI();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialScreen = urlParams.get("screen") || "chats";
+        const initialTab = urlParams.get("tab") || "login";
+        window.navigateToScreen(initialScreen, { tab: initialTab });
+      });
+
+      // Immediate run if DOM is already parsed
+      if (document.readyState === "interactive" || document.readyState === "complete") {
+        updateUserUI();
+        updatePremiumUI();
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialScreen = urlParams.get("screen") || "chats";
+        const initialTab = urlParams.get("tab") || "login";
+        window.navigateToScreen(initialScreen, { tab: initialTab });
+      }
+    })();
+  </script>
 
 </body>
 
