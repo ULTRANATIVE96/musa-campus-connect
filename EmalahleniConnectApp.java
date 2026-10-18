@@ -592,57 +592,99 @@ public class EmalahleniConnectApp {
         sb.append("  <div class=\"app-container\" id=\"appContainer\">\n");
 
         // ====================================================================
-        // SCREEN 0: LOGIN & REGISTRATION (FULL SCREEN DUAL-PANEL MASTER)
+        // ====================================================================
+        // SCREEN 0: LOGIN & REGISTRATION (PRO TIER FULL-SCREEN DUAL-PANEL)
         // ====================================================================
         sb.append("    <section class=\"app-screen " + (screen.equals("login") ? "active-screen login-screen-page" : "") + "\" id=\"screenLogin\" " + (screen.equals("login") ? "" : "style=\"display:none;\"") + ">\n");
         sb.append("      <div class=\"login-fullscreen-container\">\n");
 
-        // LEFT HERO PANEL (DESKTOP SHOWCASE & ZERO-DATA MISSION)
+        // LEFT HERO PANEL (DESKTOP SHOWCASE & LIVE SIMULATED APN CHAT)
         sb.append("        <div class=\"login-hero-panel\">\n");
         sb.append("          <div class=\"login-hero-top\">\n");
         sb.append("            <div class=\"hero-brand-pill\">\n");
-        sb.append("              <span class=\"hero-brand-logo-icon\">💬</span>\n");
+        sb.append("              <span class=\"hero-brand-logo-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"></path></svg></span>\n");
         sb.append("              <span class=\"hero-brand-name\">Musa Campus Connect</span>\n");
         sb.append("              <span class=\"hero-msc-badge\">MSC</span>\n");
         sb.append("            </div>\n");
-        sb.append("            <h1 class=\"hero-main-title\">Connect & Collaborate.<br><span class=\"gradient-text\">Zero-Data Required.</span></h1>\n");
-        sb.append("            <p class=\"hero-main-desc\">South Africa's premier reverse-billed higher-education messaging network. Real-time academic communications without mobile data costs.</p>\n");
+        sb.append("            <h1 class=\"hero-main-title\">Connect &amp; Collaborate.<br><span class=\"gradient-text\">Zero Data Required.</span></h1>\n");
+        sb.append("            <p class=\"hero-main-desc\">South Africa's premier reverse-billed campus messaging network. Real-time academic communications across all mobile networks without student data deductions.</p>\n");
+
+        // LIVE SIMULATED CHAT PREVIEW WIDGET
+        sb.append("            <div class=\"hero-preview-widget\">\n");
+        sb.append("              <div class=\"preview-widget-header\">\n");
+        sb.append("                <div class=\"preview-channel-pill\">\n");
+        sb.append("                  <span class=\"preview-hash\">#</span>\n");
+        sb.append("                  <span class=\"preview-channel-name\">bis301-announcements</span>\n");
+        sb.append("                  <span class=\"preview-live-pill\"><span class=\"pulse-emerald\"></span> APN LIVE</span>\n");
+        sb.append("                </div>\n");
+        sb.append("                <span class=\"preview-cost-badge\">Reverse-Billed • 0.00 ZAR</span>\n");
+        sb.append("              </div>\n");
+        sb.append("              <div class=\"preview-messages-stack\">\n");
+        sb.append("                <div class=\"preview-msg-row\">\n");
+        sb.append("                  <div class=\"preview-msg-avatar avatar-lecturer\">PS</div>\n");
+        sb.append("                  <div class=\"preview-msg-body\">\n");
+        sb.append("                    <div class=\"preview-msg-meta\">\n");
+        sb.append("                      <span class=\"preview-sender-name\">Dr. P. Sithole</span>\n");
+        sb.append("                      <span class=\"preview-sender-tag tag-faculty\">Faculty Manager</span>\n");
+        sb.append("                      <span class=\"preview-msg-time\">10:42 AM</span>\n");
+        sb.append("                    </div>\n");
+        sb.append("                    <div class=\"preview-bubble\">Tutorial 4 &amp; memo uploaded. Download via zero-rated APN without airtime deduction.</div>\n");
+        sb.append("                  </div>\n");
+        sb.append("                </div>\n");
+        sb.append("                <div class=\"preview-msg-row\">\n");
+        sb.append("                  <div class=\"preview-msg-avatar avatar-student\">HH</div>\n");
+        sb.append("                  <div class=\"preview-msg-body\">\n");
+        sb.append("                    <div class=\"preview-msg-meta\">\n");
+        sb.append("                      <span class=\"preview-sender-name\">Hlayiseko H.</span>\n");
+        sb.append("                      <span class=\"preview-sender-tag tag-student\">Student</span>\n");
+        sb.append("                      <span class=\"preview-msg-time\">10:44 AM</span>\n");
+        sb.append("                    </div>\n");
+        sb.append("                    <div class=\"preview-bubble bubble-reply\">Received! Zero airtime deducted on my Telkom SIM. Working through Question 2 now.</div>\n");
+        sb.append("                  </div>\n");
+        sb.append("                </div>\n");
+        sb.append("              </div>\n");
+        sb.append("              <div class=\"preview-widget-footer\">\n");
+        sb.append("                <div class=\"preview-carrier-tags\">\n");
+        sb.append("                  <span class=\"carrier-tag\">MTN Zero-APN</span>\n");
+        sb.append("                  <span class=\"carrier-tag\">Vodacom Billed</span>\n");
+        sb.append("                  <span class=\"carrier-tag\">Telkom Direct</span>\n");
+        sb.append("                </div>\n");
+        sb.append("                <span class=\"preview-latency\">● 14ms APN Latency</span>\n");
+        sb.append("              </div>\n");
+        sb.append("            </div>\n");
+
+        // Feature items
         sb.append("            <div class=\"hero-features-list\">\n");
         sb.append("              <div class=\"hero-feature-item\">\n");
-        sb.append("                <div class=\"hero-feat-icon\">📡</div>\n");
+        sb.append("                <div class=\"hero-feat-icon\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12.55a11 11 0 0 1 14.08 0\"></path><path d=\"M1.42 9a16 16 0 0 1 21.16 0\"></path><path d=\"M8.53 16.11a6 6 0 0 1 6.95 0\"></path><line x1=\"12\" y1=\"20\" x2=\"12.01\" y2=\"20\"></line></svg></div>\n");
         sb.append("                <div>\n");
-        sb.append("                  <div class=\"hero-feat-title\">Zero-Rated APN Connectivity</div>\n");
-        sb.append("                  <div class=\"hero-feat-desc\">Free communication across MTN, Vodacom & Telkom with zero student airtime deduction.</div>\n");
+        sb.append("                  <h4 class=\"hero-feat-title\">National Zero-Rated APN Connectivity</h4>\n");
+        sb.append("                  <p class=\"hero-feat-desc\">Free connectivity on MTN, Vodacom &amp; Telkom reverse-billed to institutional quota.</p>\n");
         sb.append("                </div>\n");
         sb.append("              </div>\n");
         sb.append("              <div class=\"hero-feature-item\">\n");
-        sb.append("                <div class=\"hero-feat-icon\">🎓</div>\n");
+        sb.append("                <div class=\"hero-feat-icon icon-emerald\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 10v6M2 10l10-5 10 5-10 5z\"></path><path d=\"M6 12v5c3 3 9 3 12 0v-5\"></path></svg></div>\n");
         sb.append("                <div>\n");
-        sb.append("                  <div class=\"hero-feat-title\">Verified Student Registration</div>\n");
-        sb.append("                  <div class=\"hero-feat-desc\">Register with your student number to access verified departmental channels and study circles.</div>\n");
-        sb.append("                </div>\n");
-        sb.append("              </div>\n");
-        sb.append("              <div class=\"hero-feature-item\">\n");
-        sb.append("                <div class=\"hero-feat-icon\">🛡️</div>\n");
-        sb.append("                <div>\n");
-        sb.append("                  <div class=\"hero-feat-title\">Campus Manager Administration</div>\n");
-        sb.append("                  <div class=\"hero-feat-desc\">Dedicated management console for faculty announcements, APN allocations and emergency broadcasts.</div>\n");
+        sb.append("                  <h4 class=\"hero-feat-title\">Mandatory Student Account Registration</h4>\n");
+        sb.append("                  <p class=\"hero-feat-desc\">Authenticates student numbers to guarantee secure access to academic groups and channels.</p>\n");
         sb.append("                </div>\n");
         sb.append("              </div>\n");
         sb.append("            </div>\n");
         sb.append("          </div>\n");
+
+        // Bottom Stats Row
         sb.append("          <div class=\"hero-bottom-stats-row\">\n");
-        sb.append("            <div class=\"hero-stat-block\">\n");
+        sb.append("            <div class=\"hero-stat-card\">\n");
         sb.append("              <span class=\"stat-num\">2,840+</span>\n");
         sb.append("              <span class=\"stat-sub\">Active Students</span>\n");
         sb.append("            </div>\n");
-        sb.append("            <div class=\"hero-stat-block\">\n");
+        sb.append("            <div class=\"hero-stat-card\">\n");
         sb.append("              <span class=\"stat-num\">428.6 GB</span>\n");
-        sb.append("              <span class=\"stat-sub\">Zero-Data Saved</span>\n");
+        sb.append("              <span class=\"stat-sub\">Data Saved</span>\n");
         sb.append("            </div>\n");
-        sb.append("            <div class=\"hero-stat-block\">\n");
+        sb.append("            <div class=\"hero-stat-card\">\n");
         sb.append("              <span class=\"stat-num\">99.98%</span>\n");
-        sb.append("              <span class=\"stat-sub\">Telco APN Uptime</span>\n");
+        sb.append("              <span class=\"stat-sub\">Carrier Uptime</span>\n");
         sb.append("            </div>\n");
         sb.append("          </div>\n");
         sb.append("        </div>\n");
@@ -655,19 +697,23 @@ public class EmalahleniConnectApp {
         String err = params.getOrDefault("error", "");
         String attempted = params.getOrDefault("attempted", "");
 
+        sb.append("            <div class=\"auth-header-badge\">Musa Campus Connect • MSC Gateway</div>\n");
+        sb.append("            <h2 class=\"auth-header-title\">Sign In or Register</h2>\n");
+        sb.append("            <p class=\"auth-header-subtitle\">Institutional manager access or verified student portal.</p>\n");
+
         // Alert Messages
         if ("notfound".equalsIgnoreCase(err)) {
             sb.append("            <div class=\"auth-alert-banner alert-notfound\">\n");
-            sb.append("              <div class=\"alert-icon-box\">❌</div>\n");
+            sb.append("              <svg class=\"alert-icon-box\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"15\" y1=\"9\" x2=\"9\" y2=\"15\"></line><line x1=\"9\" y1=\"9\" x2=\"15\" y2=\"15\"></line></svg>\n");
             sb.append("              <div class=\"alert-content-box\">\n");
-            sb.append("                <div class=\"alert-headline\">Account Not Found!</div>\n");
-            sb.append("                <div class=\"alert-message\">Details for <strong>" + escapeHtml(attempted) + "</strong> do not exist in the MSC registry. <strong>You must register an account first before signing in.</strong></div>\n");
-            sb.append("                <a href=\"/?screen=login&tab=register&attempted=" + urlEncode(attempted) + "\" class=\"btn-alert-cta\">👉 Register an Account Now →</a>\n");
+            sb.append("                <div class=\"alert-headline\">Account Not Registered</div>\n");
+            sb.append("                <div class=\"alert-message\">No profile was found for <strong>" + escapeHtml(attempted) + "</strong>. You must register an account first before signing in.</div>\n");
+            sb.append("                <a href=\"/?screen=login&tab=register&attempted=" + urlEncode(attempted) + "\" class=\"btn-alert-cta\">✨ Register Student Profile Now →</a>\n");
             sb.append("              </div>\n");
             sb.append("            </div>\n");
         } else if ("badpass".equalsIgnoreCase(err)) {
             sb.append("            <div class=\"auth-alert-banner alert-warning\">\n");
-            sb.append("              <div class=\"alert-icon-box\">⚠️</div>\n");
+            sb.append("              <svg class=\"alert-icon-box\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z\"></path><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"></line><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"></line></svg>\n");
             sb.append("              <div class=\"alert-content-box\">\n");
             sb.append("                <div class=\"alert-headline\">Incorrect Password</div>\n");
             sb.append("                <div class=\"alert-message\">The password for <strong>" + escapeHtml(attempted) + "</strong> is incorrect. Please try again.</div>\n");
@@ -675,7 +721,7 @@ public class EmalahleniConnectApp {
             sb.append("            </div>\n");
         } else if ("exists".equalsIgnoreCase(err)) {
             sb.append("            <div class=\"auth-alert-banner alert-info\">\n");
-            sb.append("              <div class=\"alert-icon-box\">ℹ️</div>\n");
+            sb.append("              <svg class=\"alert-icon-box\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg>\n");
             sb.append("              <div class=\"alert-content-box\">\n");
             sb.append("                <div class=\"alert-headline\">Account Already Exists</div>\n");
             sb.append("                <div class=\"alert-message\">An account for <strong>" + escapeHtml(attempted) + "</strong> is already registered. Please sign in below.</div>\n");
@@ -683,7 +729,7 @@ public class EmalahleniConnectApp {
             sb.append("            </div>\n");
         } else if ("mismatch".equalsIgnoreCase(err)) {
             sb.append("            <div class=\"auth-alert-banner alert-warning\">\n");
-            sb.append("              <div class=\"alert-icon-box\">⚠️</div>\n");
+            sb.append("              <svg class=\"alert-icon-box\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z\"></path><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"></line><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"></line></svg>\n");
             sb.append("              <div class=\"alert-content-box\">\n");
             sb.append("                <div class=\"alert-headline\">Passwords Do Not Match</div>\n");
             sb.append("                <div class=\"alert-message\">Please ensure both password fields match exactly.</div>\n");
@@ -691,7 +737,7 @@ public class EmalahleniConnectApp {
             sb.append("            </div>\n");
         } else if ("unauthorized".equalsIgnoreCase(err)) {
             sb.append("            <div class=\"auth-alert-banner alert-warning\">\n");
-            sb.append("              <div class=\"alert-icon-box\">⛔</div>\n");
+            sb.append("              <svg class=\"alert-icon-box\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"></path></svg>\n");
             sb.append("              <div class=\"alert-content-box\">\n");
             sb.append("                <div class=\"alert-headline\">Access Restricted</div>\n");
             sb.append("                <div class=\"alert-message\">Student user accounts do not have administrator rights. Log in as Campus Manager to access admin tools.</div>\n");
@@ -702,11 +748,11 @@ public class EmalahleniConnectApp {
         // PERMANENT CAMPUS MANAGER ACCOUNT CARD (KEPT THERE)
         sb.append("            <div class=\"manager-access-card\">\n");
         sb.append("              <div class=\"manager-card-top\">\n");
-        sb.append("                <div class=\"manager-badge\"><span class=\"pulse-dot\"></span> Institutional Manager</div>\n");
-        sb.append("                <span class=\"manager-tag\">Pre-Authorized Master Account</span>\n");
+        sb.append("                <div class=\"manager-badge\"><span class=\"pulse-emerald\"></span> Campus Manager</div>\n");
+        sb.append("                <span class=\"manager-tag\">Pre-Authorized Executive</span>\n");
         sb.append("              </div>\n");
         sb.append("              <div class=\"manager-profile-row\">\n");
-        sb.append("                <div class=\"manager-avatar-circle\">A</div>\n");
+        sb.append("                <div class=\"manager-avatar-circle\">PS</div>\n");
         sb.append("                <div class=\"manager-meta-box\">\n");
         sb.append("                  <h4 class=\"manager-title\">Dr. P. Sithole</h4>\n");
         sb.append("                  <p class=\"manager-subtext\">admin@msc.ac.za • Faculty Administration</p>\n");
@@ -723,12 +769,18 @@ public class EmalahleniConnectApp {
         sb.append("            </div>\n");
 
         // STUDENT ACCESS PORTAL
-        sb.append("            <div class=\"auth-divider-line\"><span>Student Access Portal</span></div>\n");
+        sb.append("            <div class=\"auth-divider-line\"><span>Student Access Gateway</span></div>\n");
 
-        // Tab Switcher
+        // Segmented Tab Switcher with Icons
         sb.append("            <div class=\"auth-tabs-nav\">\n");
-        sb.append("              <a href=\"/?screen=login&tab=login\" class=\"auth-tab-link " + (tab.equals("login") ? "active" : "") + "\">🔑 Sign In</a>\n");
-        sb.append("              <a href=\"/?screen=login&tab=register\" class=\"auth-tab-link " + (tab.equals("register") ? "active" : "") + "\">✨ Register Account</a>\n");
+        sb.append("              <a href=\"/?screen=login&tab=login\" class=\"auth-tab-link " + (tab.equals("login") ? "active" : "") + "\">\n");
+        sb.append("                <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"7.5\" cy=\"15.5\" r=\"5.5\"></circle><path d=\"m21 2-9.6 9.6\"></path><path d=\"m15.5 7.5 3 3L22 7l-3-3\"></path></svg>\n");
+        sb.append("                Sign In\n");
+        sb.append("              </a>\n");
+        sb.append("              <a href=\"/?screen=login&tab=register\" class=\"auth-tab-link " + (tab.equals("register") ? "active" : "") + "\">\n");
+        sb.append("                <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"></path><circle cx=\"8.5\" cy=\"7\" r=\"4\"></circle><line x1=\"20\" y1=\"8\" x2=\"20\" y2=\"14\"></line><line x1=\"23\" y1=\"11\" x2=\"17\" y2=\"11\"></line></svg>\n");
+        sb.append("                Register Account\n");
+        sb.append("              </a>\n");
         sb.append("            </div>\n");
 
         if (tab.equals("register")) {
@@ -739,30 +791,45 @@ public class EmalahleniConnectApp {
             sb.append("              <form action=\"/register\" method=\"POST\" class=\"auth-input-grid\">\n");
             sb.append("                <div class=\"form-input-group\">\n");
             sb.append("                  <label class=\"form-input-label\">Full Name</label>\n");
-            sb.append("                  <input type=\"text\" name=\"fullName\" class=\"form-input-field\" placeholder=\"e.g. Hlayiseko Hlungwani\" required>\n");
+            sb.append("                  <div class=\"input-with-icon\">\n");
+            sb.append("                    <svg class=\"input-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"></path><circle cx=\"12\" cy=\"7\" r=\"4\"></circle></svg>\n");
+            sb.append("                    <input type=\"text\" name=\"fullName\" class=\"form-input-field\" placeholder=\"e.g. Hlayiseko Hlungwani\" required>\n");
+            sb.append("                  </div>\n");
             sb.append("                </div>\n");
             sb.append("                <div class=\"form-input-group\">\n");
             sb.append("                  <label class=\"form-input-label\">Student Number / Campus Email</label>\n");
-            sb.append("                  <input type=\"email\" name=\"email\" class=\"form-input-field\" placeholder=\"e.g. 22409812@msc.ac.za or student@msc.ac.za\" value=\"" + escapeHtml(attempted) + "\" required>\n");
+            sb.append("                  <div class=\"input-with-icon\">\n");
+            sb.append("                    <svg class=\"input-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"></path><polyline points=\"22,6 12,13 2,6\"></polyline></svg>\n");
+            sb.append("                    <input type=\"email\" name=\"email\" class=\"form-input-field\" placeholder=\"e.g. 22409812@msc.ac.za or student@msc.ac.za\" value=\"" + escapeHtml(attempted) + "\" required>\n");
+            sb.append("                  </div>\n");
             sb.append("                </div>\n");
             sb.append("                <div class=\"form-input-group\">\n");
-            sb.append("                  <label class=\"form-input-label\">Faculty & Department</label>\n");
-            sb.append("                  <select name=\"department\" class=\"form-input-field\">\n");
-            sb.append("                    <option value=\"Faculty of ICT — BIS301\">Faculty of ICT — BIS301</option>\n");
-            sb.append("                    <option value=\"Faculty of ICT — Software Development\">Faculty of ICT — Software Development</option>\n");
-            sb.append("                    <option value=\"Faculty of ICT — IT Support & Networks\">Faculty of ICT — IT Support & Networks</option>\n");
-            sb.append("                    <option value=\"Faculty of Engineering\">Faculty of Engineering</option>\n");
-            sb.append("                    <option value=\"Faculty of Management Sciences\">Faculty of Management Sciences</option>\n");
-            sb.append("                  </select>\n");
+            sb.append("                  <label class=\"form-input-label\">Faculty &amp; Department</label>\n");
+            sb.append("                  <div class=\"input-with-icon\">\n");
+            sb.append("                    <svg class=\"input-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\" ry=\"2\"></rect><line x1=\"9\" y1=\"22\" x2=\"9\" y2=\"22.01\"></line><line x1=\"15\" y1=\"22\" x2=\"15\" y2=\"22.01\"></line><line x1=\"9\" y1=\"6\" x2=\"9\" y2=\"6.01\"></line><line x1=\"15\" y1=\"6\" x2=\"15\" y2=\"6.01\"></line><line x1=\"9\" y1=\"10\" x2=\"9\" y2=\"10.01\"></line><line x1=\"15\" y1=\"10\" x2=\"15\" y2=\"10.01\"></line><line x1=\"9\" y1=\"14\" x2=\"9\" y2=\"14.01\"></line><line x1=\"15\" y1=\"14\" x2=\"15\" y2=\"14.01\"></line></svg>\n");
+            sb.append("                    <select name=\"department\" class=\"form-input-field\">\n");
+            sb.append("                      <option value=\"Faculty of ICT — BIS301\">Faculty of ICT — BIS301</option>\n");
+            sb.append("                      <option value=\"Faculty of ICT — Software Development\">Faculty of ICT — Software Development</option>\n");
+            sb.append("                      <option value=\"Faculty of ICT — IT Support &amp; Networks\">Faculty of ICT — IT Support &amp; Networks</option>\n");
+            sb.append("                      <option value=\"Faculty of Engineering\">Faculty of Engineering</option>\n");
+            sb.append("                      <option value=\"Faculty of Management Sciences\">Faculty of Management Sciences</option>\n");
+            sb.append("                    </select>\n");
+            sb.append("                  </div>\n");
             sb.append("                </div>\n");
             sb.append("                <div class=\"form-input-row-2col\">\n");
             sb.append("                  <div class=\"form-input-group\">\n");
             sb.append("                    <label class=\"form-input-label\">Create Password</label>\n");
-            sb.append("                    <input type=\"password\" name=\"password\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                    <div class=\"input-with-icon\">\n");
+            sb.append("                      <svg class=\"input-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"></path></svg>\n");
+            sb.append("                      <input type=\"password\" name=\"password\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                    </div>\n");
             sb.append("                  </div>\n");
             sb.append("                  <div class=\"form-input-group\">\n");
             sb.append("                    <label class=\"form-input-label\">Confirm Password</label>\n");
-            sb.append("                    <input type=\"password\" name=\"confirmPassword\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                    <div class=\"input-with-icon\">\n");
+            sb.append("                      <svg class=\"input-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"></path></svg>\n");
+            sb.append("                      <input type=\"password\" name=\"confirmPassword\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                    </div>\n");
             sb.append("                  </div>\n");
             sb.append("                </div>\n");
             sb.append("                <button type=\"submit\" class=\"btn-auth-primary\">✨ Register Student Account →</button>\n");
@@ -772,16 +839,22 @@ public class EmalahleniConnectApp {
         } else {
             // SIGN IN FORM
             sb.append("            <div class=\"auth-form-card\">\n");
-            sb.append("              <h3 class=\"auth-form-title\">Sign In to Your Account</h3>\n");
+            sb.append("              <h3 class=\"auth-form-title\">Sign In to Student Account</h3>\n");
             sb.append("              <p class=\"auth-form-desc\">Enter your registered student credentials. <em>If you don't have an account, you must register first.</em></p>\n");
             sb.append("              <form action=\"/login\" method=\"POST\" class=\"auth-input-grid\">\n");
             sb.append("                <div class=\"form-input-group\">\n");
             sb.append("                  <label class=\"form-input-label\">Student No. or Campus Email</label>\n");
-            sb.append("                  <input type=\"email\" name=\"email\" class=\"form-input-field\" placeholder=\"student@msc.ac.za\" value=\"" + escapeHtml(attempted) + "\" required>\n");
+            sb.append("                  <div class=\"input-with-icon\">\n");
+            sb.append("                    <svg class=\"input-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"></path><polyline points=\"22,6 12,13 2,6\"></polyline></svg>\n");
+            sb.append("                    <input type=\"email\" name=\"email\" class=\"form-input-field\" placeholder=\"student@msc.ac.za\" value=\"" + escapeHtml(attempted) + "\" required>\n");
+            sb.append("                  </div>\n");
             sb.append("                </div>\n");
             sb.append("                <div class=\"form-input-group\">\n");
             sb.append("                  <label class=\"form-input-label\">Password</label>\n");
-            sb.append("                  <input type=\"password\" name=\"password\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                  <div class=\"input-with-icon\">\n");
+            sb.append("                    <svg class=\"input-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"></path></svg>\n");
+            sb.append("                    <input type=\"password\" name=\"password\" class=\"form-input-field\" placeholder=\"••••••••\" required>\n");
+            sb.append("                  </div>\n");
             sb.append("                </div>\n");
             sb.append("                <button type=\"submit\" class=\"btn-auth-primary\">Sign In to MSC Portal →</button>\n");
             sb.append("              </form>\n");
@@ -796,7 +869,7 @@ public class EmalahleniConnectApp {
         sb.append("          </div>\n"); // end login-auth-content
         sb.append("        </div>\n");   // end login-auth-panel
         sb.append("      </div>\n");     // end login-fullscreen-container
-        sb.append("    </section>\n");   // end screenLogin // end screenLogin
+        sb.append("    </section>\n");   // end screenLogin   // end screenLogin // end screenLogin
 
         // ====================================================================
         // SCREEN 1: CHATS (ITS OWN DEDICATED FULL-SCREEN PAGE)

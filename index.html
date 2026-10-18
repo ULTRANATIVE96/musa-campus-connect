@@ -42,52 +42,93 @@
       <section class="app-screen login-screen-page" id="screenLogin" style="display:none;">
         <div class="login-fullscreen-container">
 
-          <!-- LEFT HERO PANEL (DESKTOP SHOWCASE & ZERO-DATA MISSION) -->
+          <!-- LEFT HERO PANEL (DESKTOP SHOWCASE & LIVE SIMULATED APN CHAT) -->
           <div class="login-hero-panel">
             <div class="login-hero-top">
               <div class="hero-brand-pill">
-                <span class="hero-brand-logo-icon">💬</span>
+                <span class="hero-brand-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
                 <span class="hero-brand-name">Musa Campus Connect</span>
                 <span class="hero-msc-badge">MSC</span>
               </div>
-              <h1 class="hero-main-title">Connect & Collaborate.<br><span class="gradient-text">Zero-Data Required.</span></h1>
-              <p class="hero-main-desc">South Africa's premier reverse-billed higher-education messaging network. Real-time academic communications without mobile data costs.</p>
+              <h1 class="hero-main-title">Connect &amp; Collaborate.<br><span class="gradient-text">Zero Data Required.</span></h1>
+              <p class="hero-main-desc">South Africa's premier reverse-billed campus messaging network. Real-time academic communications across all mobile networks without student data deductions.</p>
+
+              <!-- LIVE SIMULATED CHAT PREVIEW WIDGET -->
+              <div class="hero-preview-widget">
+                <div class="preview-widget-header">
+                  <div class="preview-channel-pill">
+                    <span class="preview-hash">#</span>
+                    <span class="preview-channel-name">bis301-announcements</span>
+                    <span class="preview-live-pill"><span class="pulse-emerald"></span> APN LIVE</span>
+                  </div>
+                  <span class="preview-cost-badge">Reverse-Billed • 0.00 ZAR</span>
+                </div>
+                <div class="preview-messages-stack">
+                  <div class="preview-msg-row">
+                    <div class="preview-msg-avatar avatar-lecturer">PS</div>
+                    <div class="preview-msg-body">
+                      <div class="preview-msg-meta">
+                        <span class="preview-sender-name">Dr. P. Sithole</span>
+                        <span class="preview-sender-tag tag-faculty">Faculty Manager</span>
+                        <span class="preview-msg-time">10:42 AM</span>
+                      </div>
+                      <div class="preview-bubble">Tutorial 4 &amp; memo uploaded. Download via zero-rated APN without airtime deduction.</div>
+                    </div>
+                  </div>
+                  <div class="preview-msg-row">
+                    <div class="preview-msg-avatar avatar-student">HH</div>
+                    <div class="preview-msg-body">
+                      <div class="preview-msg-meta">
+                        <span class="preview-sender-name">Hlayiseko H.</span>
+                        <span class="preview-sender-tag tag-student">Student</span>
+                        <span class="preview-msg-time">10:44 AM</span>
+                      </div>
+                      <div class="preview-bubble bubble-reply">Received! Zero airtime deducted on my Telkom SIM. Working through Question 2 now.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="preview-widget-footer">
+                  <div class="preview-carrier-tags">
+                    <span class="carrier-tag">MTN Zero-APN</span>
+                    <span class="carrier-tag">Vodacom Billed</span>
+                    <span class="carrier-tag">Telkom Direct</span>
+                  </div>
+                  <span class="preview-latency">● 14ms APN Latency</span>
+                </div>
+              </div>
+
+              <!-- Feature items -->
               <div class="hero-features-list">
                 <div class="hero-feature-item">
-                  <div class="hero-feat-icon">📡</div>
+                  <div class="hero-feat-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg></div>
                   <div>
-                    <div class="hero-feat-title">Zero-Rated APN Connectivity</div>
-                    <div class="hero-feat-desc">Free communication across MTN, Vodacom & Telkom with zero student airtime deduction.</div>
+                    <h4 class="hero-feat-title">National Zero-Rated APN Connectivity</h4>
+                    <p class="hero-feat-desc">Free connectivity on MTN, Vodacom &amp; Telkom reverse-billed to institutional quota.</p>
                   </div>
                 </div>
                 <div class="hero-feature-item">
-                  <div class="hero-feat-icon">🎓</div>
+                  <div class="hero-feat-icon icon-emerald"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div>
                   <div>
-                    <div class="hero-feat-title">Verified Student Registration</div>
-                    <div class="hero-feat-desc">Register with your student number to access verified departmental channels and study circles.</div>
-                  </div>
-                </div>
-                <div class="hero-feature-item">
-                  <div class="hero-feat-icon">🛡️</div>
-                  <div>
-                    <div class="hero-feat-title">Campus Manager Administration</div>
-                    <div class="hero-feat-desc">Dedicated management console for faculty announcements, APN allocations and emergency broadcasts.</div>
+                    <h4 class="hero-feat-title">Mandatory Student Account Registration</h4>
+                    <p class="hero-feat-desc">Authenticates student numbers to guarantee secure access to academic groups and channels.</p>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Bottom Stats Row -->
             <div class="hero-bottom-stats-row">
-              <div class="hero-stat-block">
+              <div class="hero-stat-card">
                 <span class="stat-num">2,840+</span>
                 <span class="stat-sub">Active Students</span>
               </div>
-              <div class="hero-stat-block">
+              <div class="hero-stat-card">
                 <span class="stat-num">428.6 GB</span>
-                <span class="stat-sub">Zero-Data Saved</span>
+                <span class="stat-sub">Data Saved</span>
               </div>
-              <div class="hero-stat-block">
+              <div class="hero-stat-card">
                 <span class="stat-num">99.98%</span>
-                <span class="stat-sub">Telco APN Uptime</span>
+                <span class="stat-sub">Carrier Uptime</span>
               </div>
             </div>
           </div>
@@ -96,14 +137,18 @@
           <div class="login-auth-panel">
             <div class="login-auth-content">
 
+              <div class="auth-header-badge">Musa Campus Connect • MSC Gateway</div>
+              <h2 class="auth-header-title">Sign In or Register</h2>
+              <p class="auth-header-subtitle">Institutional manager access or verified student portal.</p>
+
               <!-- PERMANENT CAMPUS MANAGER ACCOUNT CARD (KEPT THERE) -->
               <div class="manager-access-card">
                 <div class="manager-card-top">
-                  <div class="manager-badge"><span class="pulse-dot"></span> Institutional Manager</div>
-                  <span class="manager-tag">Pre-Authorized Master Account</span>
+                  <div class="manager-badge"><span class="pulse-emerald"></span> Campus Manager</div>
+                  <span class="manager-tag">Pre-Authorized Executive</span>
                 </div>
                 <div class="manager-profile-row">
-                  <div class="manager-avatar-circle">A</div>
+                  <div class="manager-avatar-circle">PS</div>
                   <div class="manager-meta-box">
                     <h4 class="manager-title">Dr. P. Sithole</h4>
                     <p class="manager-subtext">admin@msc.ac.za • Faculty Administration</p>
@@ -120,26 +165,38 @@
               </div>
 
               <!-- STUDENT ACCESS PORTAL -->
-              <div class="auth-divider-line"><span>Student Access Portal</span></div>
+              <div class="auth-divider-line"><span>Student Access Gateway</span></div>
 
-              <!-- Tab Switcher -->
+              <!-- Segmented Tab Switcher with Icons -->
               <div class="auth-tabs-nav">
-                <a href="/?screen=login&tab=login" class="auth-tab-link active">🔑 Sign In</a>
-                <a href="/?screen=login&tab=register" class="auth-tab-link">✨ Register Account</a>
+                <a href="/?screen=login&tab=login" class="auth-tab-link active">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg>
+                  Sign In
+                </a>
+                <a href="/?screen=login&tab=register" class="auth-tab-link">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                  Register Account
+                </a>
               </div>
 
               <!-- SIGN IN FORM -->
               <div class="auth-form-card">
-                <h3 class="auth-form-title">Sign In to Your Account</h3>
+                <h3 class="auth-form-title">Sign In to Student Account</h3>
                 <p class="auth-form-desc">Enter your registered student credentials. <em>If you don't have an account, you must register first.</em></p>
                 <form action="/login" method="POST" class="auth-input-grid">
                   <div class="form-input-group">
                     <label class="form-input-label">Student No. or Campus Email</label>
-                    <input type="email" name="email" class="form-input-field" placeholder="student@msc.ac.za" required>
+                    <div class="input-with-icon">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                      <input type="email" name="email" class="form-input-field" placeholder="student@msc.ac.za" required>
+                    </div>
                   </div>
                   <div class="form-input-group">
                     <label class="form-input-label">Password</label>
-                    <input type="password" name="password" class="form-input-field" placeholder="••••••••" required>
+                    <div class="input-with-icon">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                      <input type="password" name="password" class="form-input-field" placeholder="••••••••" required>
+                    </div>
                   </div>
                   <button type="submit" class="btn-auth-primary">Sign In to MSC Portal →</button>
                 </form>
